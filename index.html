@@ -25,8 +25,8 @@
     html { scroll-behavior: smooth; }
     body { margin: 0; background: #f1eee8; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     button, a { font: inherit; }
-    .page { width: min(100%, 393px); margin: 0 auto; min-height: 100vh; padding-bottom: 120px; background: var(--cream); overflow: hidden; position: relative; box-shadow: 0 0 60px rgba(35, 34, 29, .07); }
-    .topbar { height: 56px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; background: #fff; position: relative; z-index: 4; }
+    .page { width: min(100%, 393px); margin: 0 auto; min-height: 100vh; padding-bottom: 120px; background: var(--cream); overflow: clip; position: relative; box-shadow: 0 0 60px rgba(35, 34, 29, .07); }
+    .topbar { height: 56px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; background: #fff; position: sticky; top: 0; z-index: 20; }
     .logo { display: block; }
     .menu { width: 40px; height: 40px; padding: 4px; border: 0; background: transparent; display: flex; flex-direction: column; justify-content: center; gap: 8px; cursor: pointer; }
     .menu span { width: 32px; height: 2px; background: var(--ink); display: block; transition: transform .35s cubic-bezier(.2,.7,.2,1), width .35s ease; }
@@ -79,7 +79,11 @@
     .milestone { position: absolute; display: flex; gap: 11px; align-items: center; width: 162px; font-size: 12px; line-height: 1.28; }
     .milestone-art { width: 52px; height: 58px; position: relative; flex: 0 0 52px; }
     .milestone-art .bubble-shape { position: absolute; left: 0; top: 0; }
-    .milestone-art .follicles { position: absolute; left: 2px; top: 0; width: 42.85px; height: 52px; object-fit: contain; }
+    .milestone-art .follicles { position: absolute; left: 2px; top: 0; width: 42.85px; height: 52px; background-image: url("assets/follicle-stages.png"); background-size: 200% 200%; background-repeat: no-repeat; }
+    .follicles.stage-day1 { background-position: 0 0; }
+    .follicles.stage-month1 { background-position: 100% 0; }
+    .follicles.stage-month3 { background-position: 0 100%; }
+    .follicles.stage-month5 { background-position: 100% 100%; }
     .milestone strong { display: block; font-size: 13px; margin-bottom: 4px; }
     .milestone span { display: block; }
     .milestone.m1 { top: 0; left: 156.95px; }
@@ -130,8 +134,13 @@
     .seal-section { padding: 18px 16px 10px; display: flex; justify-content: center; perspective: 900px; }
     .seal-wrap { width: 120px; height: 116px; position: relative; transform-style: preserve-3d; will-change: transform; }
     .seal { width: 120px; height: 116px; object-fit: contain; display: block; filter: drop-shadow(0 8px 12px rgba(27,49,175,.12)); backface-visibility: hidden; }
+    .seal-wrap::after { content: ""; position: absolute; inset: 5px; z-index: 2; pointer-events: none; border-radius: 50%; opacity: 0; background: linear-gradient(112deg, transparent 31%, rgba(255,255,255,.72) 48%, rgba(255,255,255,.16) 55%, transparent 70%); transform: translateX(-120%) rotate(12deg); }
     .seal-wrap.is-visible { animation: seal-arrive 1.7s cubic-bezier(.2,.75,.2,1) both; }
     @keyframes seal-arrive { 0% { opacity: 0; transform: rotateY(-70deg) rotateX(12deg) scale(.86); } 55% { opacity: 1; transform: rotateY(395deg) rotateX(-3deg) scale(1.025); } 78% { transform: rotateY(355deg) rotateX(2deg) scale(.995); } 100% { opacity: 1; transform: rotateY(360deg) rotateX(0) scale(1); } }
+    .seal-wrap.is-tapped { animation: seal-tap-3d .8s cubic-bezier(.2,.75,.2,1) both; }
+    .seal-wrap.is-tapped::after { animation: seal-shine .9s ease-out both; }
+    @keyframes seal-tap-3d { 0% { transform: rotateX(0) rotateY(0) scale(1); } 40% { transform: rotateX(-9deg) rotateY(18deg) scale(1.035); } 72% { transform: rotateX(5deg) rotateY(-10deg) scale(1.01); } 100% { transform: rotateX(0) rotateY(0) scale(1); } }
+    @keyframes seal-shine { 0% { opacity: 0; transform: translateX(-120%) rotate(12deg); } 25% { opacity: .85; } 100% { opacity: 0; transform: translateX(120%) rotate(12deg); } }
     .footer-cta { position: fixed; z-index: 10; left: 0; right: 0; bottom: 0; width: min(393px, 100vw); margin: 0 auto; padding: 12px 24px calc(16px + env(safe-area-inset-bottom)); text-align: center; background: rgba(251,247,241,.96); border-top: 1px solid rgba(27,27,27,.08); box-shadow: 0 -8px 24px rgba(35,34,29,.07); backdrop-filter: blur(12px); }
     .footer-cta p { font: 14px/1.45 var(--sans); margin: 0 0 10px; }
     .primary { display: flex; min-height: 56px; align-items: center; justify-content: center; width: 100%; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 2.8px; text-transform: uppercase; transition: background .25s, transform .25s, box-shadow .25s; }
@@ -139,11 +148,10 @@
 
     .bag-screen { width: min(100%, 393px); min-height: 100vh; margin: 0 auto; padding-bottom: calc(112px + env(safe-area-inset-bottom)); background: var(--cream); box-shadow: 0 0 60px rgba(35,34,29,.07); }
     .bag-screen[hidden] { display: none; }
-    .bag-header { height: 62px; padding: 0 16px 0 8px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
+    .bag-header { height: 62px; padding: 0 16px 0 8px; display: flex; align-items: center; justify-content: space-between; background: #fff; position: sticky; top: 0; z-index: 20; }
     .bag-logo { display: block; width: 136px; height: auto; }
     .bag-header .menu { width: 40px; height: 40px; padding: 4px; }
     .bag-main { position: relative; padding: 20px 8px 30px; }
-    .bag-walmart { position: absolute; z-index: 2; top: 14px; right: -1px; width: 42px; height: 50px; display: grid; place-items: center; border-radius: 10px 0 0 10px; background: #292a27; color: #f6ff22; font: 34px/1 Arial,sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
     .bag-title { margin: 0; padding: 0 0 14px; border-bottom: 1px solid #bcbab6; font: 500 36px/1.12 var(--serif); letter-spacing: -.035em; }
     .shipping-note { margin: 18px 0 16px; font-size: 16px; line-height: 24px; }
     .bag-card { display: grid; grid-template-columns: 92px 1fr; align-items: center; min-height: 172px; padding: 18px 14px; background: #fff; border: 1px solid #bfc0c1; }
@@ -235,10 +243,10 @@
       <h2 class="section-title reveal" data-reveal="text">Visible <span class="accent">results</span> in 3–6 months</h2>
       <div class="timeline">
         <img class="timeline-line" src="assets/timeline-connector.svg" alt="" />
-        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/timeline-month5.png" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
-        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/timeline-month3.png" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
-        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><img class="follicles" src="assets/timeline-month1.png" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
-        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><img class="follicles" src="assets/timeline-day1.png" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><span class="follicles stage-month5" role="img" aria-label="Hair follicle at month five"></span></span><div><strong>Month 5+</strong><span>More growth and density</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><span class="follicles stage-month3" role="img" aria-label="Hair follicle at months three to five"></span></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><span class="follicles stage-month1" role="img" aria-label="Hair follicle at months one to three"></span></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><span class="follicles stage-day1" role="img" aria-label="Hair follicle on day one"></span></span><div><strong>Day 1</strong><span>You start your plan</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
       </div>
       <p class="timeline-foot reveal" data-reveal="text">Results continue with ongoing use</p>
     </section>
@@ -275,7 +283,6 @@
       <button class="menu" aria-label="Open menu"><span></span><span></span><span></span></button>
     </header>
     <main class="bag-main">
-      <span class="bag-walmart" aria-hidden="true">✳</span>
       <h1 class="bag-title">Your shopping bag</h1>
       <p class="shipping-note">Your order qualifies for complimentary standard shipping.</p>
       <article class="bag-card">
@@ -306,10 +313,15 @@
   <script>
     (() => {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const observed = document.querySelectorAll('.reveal, .seal-wrap, .timeline');
+      const observed = document.querySelectorAll('.reveal:not(.approved), .timeline');
       const page = document.querySelector('.page');
       const pageFooter = document.querySelector('.footer-cta');
       const bagScreen = document.querySelector('#shopping-bag-screen');
+      const clinicianNote = document.querySelector('.clinician-note');
+      const approved = document.querySelector('.approved');
+      const approvedCheck = document.querySelector('.approved-icon-wrap img');
+      const sealSection = document.querySelector('.seal-section');
+      const seal = document.querySelector('.seal-wrap');
       const syncScreen = () => {
         const showBag = window.location.hash === '#shopping-bag';
         page.hidden = showBag;
@@ -320,8 +332,16 @@
       };
       window.addEventListener('hashchange', syncScreen);
       syncScreen();
+      const showApproved = () => {
+        if (!approved || approved.classList.contains('is-visible')) return;
+        approved.classList.add('is-visible');
+      };
+      const revealSeal = () => seal && seal.classList.add('is-visible');
+
       if (reduceMotion || !('IntersectionObserver' in window)) {
         observed.forEach((el) => el.classList.add('is-visible'));
+        showApproved();
+        revealSeal();
       } else {
         const observer = new IntersectionObserver((entries, io) => {
           entries.forEach((entry) => {
@@ -331,9 +351,26 @@
           });
         }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
         observed.forEach((el) => observer.observe(el));
+
+        if (clinicianNote && approved) {
+          clinicianNote.addEventListener('animationend', (event) => {
+            if (event.animationName === 'note-highlight') showApproved();
+          });
+        }
+
+        if (approvedCheck && sealSection) {
+          approvedCheck.addEventListener('animationend', (event) => {
+            if (event.animationName !== 'check-in') return;
+            const sealObserver = new IntersectionObserver((entries, io) => {
+              if (!entries.some((entry) => entry.isIntersecting)) return;
+              revealSeal();
+              io.disconnect();
+            }, { threshold: 0.82, rootMargin: '0px' });
+            sealObserver.observe(sealSection);
+          });
+        }
       }
 
-      const seal = document.querySelector('.seal-wrap');
       if (!reduceMotion && seal && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         let frame = 0;
         seal.addEventListener('pointermove', (event) => {
@@ -350,6 +387,16 @@
         seal.addEventListener('pointerleave', () => {
           cancelAnimationFrame(frame);
           seal.style.transform = '';
+        });
+      }
+      if (!reduceMotion && seal) {
+        let tapTimer;
+        seal.addEventListener('click', () => {
+          seal.classList.remove('is-tapped');
+          void seal.offsetWidth;
+          seal.classList.add('is-tapped');
+          window.clearTimeout(tapTimer);
+          tapTimer = window.setTimeout(() => seal.classList.remove('is-tapped'), 950);
         });
       }
     })();

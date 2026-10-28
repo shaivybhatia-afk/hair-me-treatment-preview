@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#fbf7f1" />
+  <title>Your Hair + Me treatment plan</title>
+  <style>
+    @font-face { font-family: "IvyOra Display"; src: url("assets/fonts/ivy-ora-display-medium.otf") format("opentype"); font-style: normal; font-weight: 500; font-display: swap; }
+    @font-face { font-family: "Proxima Nova"; src: url("assets/fonts/proxima-nova-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Proxima Nova"; src: url("assets/fonts/proxima-nova-semibold.ttf") format("truetype"); font-style: normal; font-weight: 600; font-display: swap; }
+    :root {
+      --cream: #fbf7f1;
+      --paper: #fff;
+      --ink: #1b1b1b;
+      --muted: #545763;
+      --blue: #1b31af;
+      --blue-light: #354bcb;
+      --line: #e6e1d9;
+      --serif: "IvyOra Display", Georgia, serif;
+      --sans: "Proxima Nova", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      --body: "Proxima Nova", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #f1eee8; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    button, a { font: inherit; }
+    .page { width: min(100%, 393px); margin: 0 auto; min-height: 100vh; padding-bottom: 120px; background: var(--cream); overflow: hidden; position: relative; box-shadow: 0 0 60px rgba(35, 34, 29, .07); }
+    .topbar { height: 56px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; background: #fff; position: relative; z-index: 4; }
+    .logo { display: block; }
+    .menu { width: 40px; height: 40px; padding: 4px; border: 0; background: transparent; display: flex; flex-direction: column; justify-content: center; gap: 8px; cursor: pointer; }
+    .menu span { width: 32px; height: 2px; background: var(--ink); display: block; transition: transform .35s cubic-bezier(.2,.7,.2,1), width .35s ease; }
+    .menu span:last-child { width: 32px; }
+    .menu:hover span:first-child { transform: translateY(4px) rotate(4deg); }
+    .menu:hover span:last-child { width: 32px; transform: translateY(-4px) rotate(-4deg); }
+    .progress { padding: 22px 16px 0; background: var(--cream); }
+    .progress-copy { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; line-height: 24px; }
+    .progress-track { margin-top: 6px; height: 2px; background: #d9d6d1; position: relative; }
+    .progress-value { display: block; height: 100%; width: 95%; background: var(--blue); transform-origin: left; animation: progress-in 1.2s cubic-bezier(.2,.65,.2,1) both; }
+    @keyframes progress-in { from { transform: scaleX(.12); } to { transform: scaleX(1); } }
+
+    .hero { min-height: 530px; position: relative; padding: 24px 16px 30px; }
+    .hero h1, .section-title { font: 500 28px/1.28 var(--serif); letter-spacing: -.035em; margin: 0; }
+    .hero h1 { max-width: 355px; position: relative; z-index: 1; }
+    .accent { color: var(--blue); }
+    .ingredient-title { position: absolute; z-index: 2; left: 16px; top: 140px; margin: 0; width: 215px; font: 500 18px/24px var(--serif); }
+    .product { position: absolute; width: 83.93px; height: 397.99px; top: 121.35px; right: 25px; z-index: 0; overflow: hidden; }
+    .product img { position: absolute; width: 355.65%; height: 100%; left: -138.96%; top: 0; max-width: none; display: block; }
+    .proof-list { position: absolute; left: 16px; top: 234.75px; z-index: 2; width: min(254px, calc(100vw - 126px)); height: 243px; }
+    .proof-list::before { content: ""; position: absolute; left: 8.25px; top: 22px; bottom: 59px; width: 1.5px; background: #deddea; }
+    .proof { position: absolute; left: 0; display: flex; align-items: flex-start; width: 100%; min-height: 80px; padding: 12px 10px 10px 34px; border: 0; background: transparent; color: var(--blue); font-size: 13px; font-weight: 600; line-height: 17px; }
+    .proof::before { content: ""; position: absolute; left: -1px; top: 12px; transform: none; width: 20px; height: 20px; background: url("assets/proof-check.svg") center / 20px 20px no-repeat; }
+    .proof:nth-child(1) { top: 0; }
+    .proof:nth-child(2) { top: 81.35px; }
+    .proof:nth-child(3) { top: 162.38px; }
+    .proof.is-visible::before { animation: proof-tick-in .52s cubic-bezier(.2,.75,.2,1) both; }
+    .proof-list.stagger > .reveal:nth-child(2).is-visible::before { animation-delay: .2s; }
+    .proof-list.stagger > .reveal:nth-child(3).is-visible::before { animation-delay: .4s; }
+    @keyframes proof-tick-in { 0% { opacity: 0; transform: scale(.45); } 70% { opacity: 1; transform: scale(1.14); } 100% { opacity: 1; transform: scale(1); } }
+
+    .content-section { padding: 36px 16px 38px; }
+    .work { padding-top: 0; }
+    .section-title { margin-bottom: 20px; }
+    .section-intro { max-width: 325px; color: var(--muted); font: 16px/1.45 var(--sans); margin: 0 0 24px; }
+    .section-intro .accent { font-weight: 400; }
+    .mechanism { padding-top: 24px; }
+    .mechanism-cards { background: #fff; display: grid; gap: 13px; padding: 20px 12px 16px; }
+    .mechanism-card { display: grid; grid-template-columns: 95px 1fr; gap: 16px; align-items: center; min-height: 92px; }
+    .mechanism-card img { width: 87px; height: 85px; object-fit: contain; }
+    .mechanism-card h3 { font: 500 18px/1.3 var(--serif); margin: 0 0 7px; }
+    .mechanism-card p { color: var(--muted); font: 14px/1.45 var(--sans); margin: 0; }
+    .learn { display: block; width: fit-content; margin: 14px auto 0; color: var(--ink); font-size: 14px; text-underline-offset: 3px; }
+
+    .timeline-section { padding: 36px 16px 38px; }
+    .timeline { position: relative; width: min(100%, 329.95px); min-height: 454px; margin: 34px auto 0; }
+    .timeline-line { position: absolute; display: block; width: 171.657px; height: 399.191px; left: 63.95px; top: 55px; transform: none; clip-path: none; }
+    .timeline.is-visible .timeline-line { animation: timeline-path-reveal 1.9s cubic-bezier(.4,0,.2,1) both; }
+    @keyframes timeline-path-reveal { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+    .milestone { position: absolute; display: flex; gap: 11px; align-items: center; width: 162px; font-size: 12px; line-height: 1.28; }
+    .milestone-art { width: 52px; height: 58px; position: relative; flex: 0 0 52px; }
+    .milestone-art .bubble-shape { position: absolute; left: 0; top: 0; }
+    .milestone-art .follicles { position: absolute; left: 2px; top: 0; width: 42.85px; height: 52px; object-fit: contain; }
+    .milestone strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    .milestone span { display: block; }
+    .milestone.m1 { top: 0; left: 156.95px; }
+    .milestone.m2 { top: 134px; left: 144px; }
+    .milestone.m3 { top: 253px; left: -8px; width: 137px; flex-direction: row-reverse; text-align: right; }
+    .milestone.m4 { top: 366px; left: 174.95px; }
+    .milestone-dot { position: absolute; z-index: 3; width: 10px; height: 10px; box-sizing: border-box; border: 1px solid var(--blue); border-radius: 50%; background: var(--cream); opacity: 0; transform: scale(.35); transition: opacity .35s ease, transform .45s cubic-bezier(.2,.75,.2,1); }
+    .milestone.is-visible .milestone-dot { opacity: 1; transform: scale(1); }
+    .milestone.m1 .milestone-dot, .milestone.m2 .milestone-dot, .milestone.m4 .milestone-dot { left: calc(50% - 55px); }
+    .milestone.m1 .milestone-dot, .milestone.m2 .milestone-dot { top: 71px; }
+    .milestone.m3 .milestone-dot { left: calc(50% + 43.5px); top: 70px; }
+    .milestone.m4 .milestone-dot { top: 70px; }
+    .timeline-foot { display: flex; align-items: center; justify-content: center; gap: 8px; color: rgba(27,27,27,.8); font: 400 16px/24px var(--sans); text-align: center; margin: 32px 0 0; }
+    .timeline-foot::before { content: ""; display: block; flex: 0 0 20px; width: 20px; height: 20px; background: url("assets/results-surity-icon.svg") center / 20px 20px no-repeat; }
+
+    .results-section { padding: 36px 8px 38px; background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.84) 48%, rgba(255,255,255,.1)); }
+    .results-section .section-title { padding: 0 8px; }
+    .results-grid { width: 361px; max-width: 100%; margin: 0 auto; display: flex; gap: 12px; overflow-x: auto; overflow-y: clip; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .results-grid::-webkit-scrollbar { display: none; }
+    .result-card { flex: 0 0 188.5px; scroll-snap-align: start; padding: 8px; background: #fff; min-width: 0; }
+    .photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .photo { height: 100px; overflow: hidden; position: relative; background: #eee; }
+    .photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .photo-label { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,.75); backdrop-filter: blur(8px); padding: 3px 4px; font-size: 9px; white-space: nowrap; }
+    .result-card p { font: 12px/16px var(--sans); margin: 8px 0; min-height: 32px; }
+    .patient { display: inline-flex; background: var(--cream); padding: 3px 6px; font-size: 11px; }
+
+    .side-effects { padding-top: 36px; }
+    .effects { display: grid; gap: 12px; padding: 12px; background: #fff; }
+    .effect { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 6px 0; }
+    .effect-icon { width: 40px; height: 40px; display: grid; place-items: center; }
+    .effect-icon img { width: auto; height: auto; }
+    .effect h3 { font: 600 16px/24px var(--sans); margin: 0 0 4px; }
+    .effect p { font: 12px/18px var(--sans); margin: 0; }
+    .clinician-note { position: relative; isolation: isolate; margin: 18px 4px 0; font-size: 15px; line-height: 24px; }
+    .clinician-note::before { content: ""; position: absolute; z-index: -1; inset: -5px -8px; border-radius: 2px; background: linear-gradient(90deg, rgba(27,49,175,.19), rgba(27,49,175,.08)); opacity: 0; clip-path: inset(0 100% 0 0); }
+    .clinician-note.is-visible::before { animation: note-highlight 1.7s .25s ease-out both; }
+    @keyframes note-highlight { 0% { opacity: 0; clip-path: inset(0 100% 0 0); } 28% { opacity: 1; clip-path: inset(0 0 0 0); } 62% { opacity: .72; clip-path: inset(0 0 0 0); } 100% { opacity: 0; clip-path: inset(0 0 0 0); } }
+
+    .approved { margin: 18px 16px 30px; padding: 14px 12px; color: #fff; background: linear-gradient(135deg, var(--blue), var(--blue-light)); }
+    .approved-heading { display: flex; align-items: center; gap: 8px; font: 700 16px/22px var(--body); }
+    .approved-icon-wrap { width: 28px; height: 28px; display: grid; place-items: center; overflow: hidden; flex: 0 0 28px; }
+    .approved-icon-wrap img { display: block; width: 28px; height: 28px; opacity: 0; transform-origin: center; }
+    .approved.is-visible .approved-icon-wrap img { animation: check-in .9s cubic-bezier(.2,.75,.2,1) .12s both; }
+    @keyframes check-in { 0% { opacity: 0; transform: scale(.82); clip-path: inset(0 100% 0 0); } 58% { opacity: 1; transform: scale(1.08); clip-path: inset(0); } 78% { transform: scale(.97); } 100% { opacity: 1; transform: scale(1); clip-path: inset(0); } }
+    .approved p { opacity: .85; font: 16px/22px var(--body); margin: 8px 0 0; }
+
+    .seal-section { padding: 18px 16px 10px; display: flex; justify-content: center; perspective: 900px; }
+    .seal-wrap { width: 120px; height: 116px; position: relative; transform-style: preserve-3d; will-change: transform; }
+    .seal { width: 120px; height: 116px; object-fit: contain; display: block; filter: drop-shadow(0 8px 12px rgba(27,49,175,.12)); backface-visibility: hidden; }
+    .seal-wrap.is-visible { animation: seal-arrive 1.7s cubic-bezier(.2,.75,.2,1) both; }
+    @keyframes seal-arrive { 0% { opacity: 0; transform: rotateY(-70deg) rotateX(12deg) scale(.86); } 55% { opacity: 1; transform: rotateY(395deg) rotateX(-3deg) scale(1.025); } 78% { transform: rotateY(355deg) rotateX(2deg) scale(.995); } 100% { opacity: 1; transform: rotateY(360deg) rotateX(0) scale(1); } }
+    .footer-cta { position: fixed; z-index: 10; left: 0; right: 0; bottom: 0; width: min(393px, 100vw); margin: 0 auto; padding: 12px 24px calc(16px + env(safe-area-inset-bottom)); text-align: center; background: rgba(251,247,241,.96); border-top: 1px solid rgba(27,27,27,.08); box-shadow: 0 -8px 24px rgba(35,34,29,.07); backdrop-filter: blur(12px); }
+    .footer-cta p { font: 14px/1.45 var(--sans); margin: 0 0 10px; }
+    .primary { display: flex; min-height: 56px; align-items: center; justify-content: center; width: 100%; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 2.8px; text-transform: uppercase; transition: background .25s, transform .25s, box-shadow .25s; }
+    .primary:hover { background: #14258e; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(27,49,175,.18); }
+
+    .bag-screen { width: min(100%, 393px); min-height: 100vh; margin: 0 auto; padding-bottom: calc(112px + env(safe-area-inset-bottom)); background: var(--cream); box-shadow: 0 0 60px rgba(35,34,29,.07); }
+    .bag-screen[hidden] { display: none; }
+    .bag-header { height: 62px; padding: 0 16px 0 8px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
+    .bag-logo { display: block; width: 136px; height: auto; }
+    .bag-header .menu { width: 40px; height: 40px; padding: 4px; }
+    .bag-main { position: relative; padding: 20px 8px 30px; }
+    .bag-walmart { position: absolute; z-index: 2; top: 14px; right: -1px; width: 42px; height: 50px; display: grid; place-items: center; border-radius: 10px 0 0 10px; background: #292a27; color: #f6ff22; font: 34px/1 Arial,sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .bag-title { margin: 0; padding: 0 0 14px; border-bottom: 1px solid #bcbab6; font: 500 36px/1.12 var(--serif); letter-spacing: -.035em; }
+    .shipping-note { margin: 18px 0 16px; font-size: 16px; line-height: 24px; }
+    .bag-card { display: grid; grid-template-columns: 92px 1fr; align-items: center; min-height: 172px; padding: 18px 14px; background: #fff; border: 1px solid #bfc0c1; }
+    .bag-product { width: 70px; height: 126px; object-fit: cover; object-position: center; }
+    .bag-product-meta { min-width: 0; }
+    .prescription-label { display: inline-block; padding: 3px 9px; border: 1px solid var(--ink); font-size: 15px; font-weight: 600; line-height: 20px; }
+    .bag-product-title { margin: 12px 0 5px; font: 500 27px/1.14 var(--serif); letter-spacing: -.025em; }
+    .bag-product-description { margin: 0; font-size: 16px; line-height: 24px; }
+    .price-card { margin-top: 16px; padding: 15px 16px 14px; background: #fff; border: 1px solid #bfc0c1; font-size: 16px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 34px; }
+    .price-row strong { font-weight: 600; }
+    .price-row .old-price { margin-left: 5px; color: #333; text-decoration: line-through; font-weight: 400; }
+    .price-rule { height: 1px; margin: 8px 0 7px; background: #c7c5c2; }
+    .redeem { margin-top: 16px; padding-top: 19px; border-top: 1px solid #bcbab6; }
+    .redeem-title { margin: 0 0 10px; font-size: 16px; font-weight: 600; }
+    .redeem-controls { display: grid; grid-template-columns: 1fr 92px; gap: 16px; }
+    .redeem-input { width: 100%; height: 58px; padding: 0 16px; border: 1px solid #bfc0c1; border-radius: 0; background: #fff; color: var(--ink); font-size: 16px; }
+    .redeem-apply { height: 58px; border: 0; border-radius: 0; background: #e6e6e6; color: #454545; font-size: 14px; font-weight: 600; letter-spacing: 2.8px; }
+    .offer-applied { display: flex; align-items: center; gap: 9px; min-height: 60px; margin-top: 16px; padding: 12px 16px; border: 1px solid #31874a; background: #e0f9ce; font-size: 16px; font-weight: 600; }
+    .offer-check { width: 24px; height: 24px; flex: 0 0 24px; display: grid; place-items: center; border-radius: 50%; background: #31874a; color: #fff; font-size: 17px; line-height: 1; }
+    .bag-continue-wrap { position: fixed; z-index: 11; left: 0; right: 0; bottom: 0; width: min(393px,100vw); margin: 0 auto; padding: 12px 14px calc(28px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(251,247,241,0), var(--cream) 30%); }
+    .bag-continue { display: flex; width: 100%; height: 56px; align-items: center; justify-content: center; background: var(--blue); color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal[data-reveal="text"] { transform: translateY(12px); transition-duration: .85s; }
+    .hero h1.reveal, .section-title.reveal { opacity: 0; transform: translateY(20px); filter: blur(5px); transition: opacity .78s cubic-bezier(.2,.7,.2,1), transform .82s cubic-bezier(.2,.7,.2,1), filter .78s ease; }
+    .hero h1.reveal.is-visible, .section-title.reveal.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .milestone.m1 .milestone-dot { transition-delay: .14s; }
+    .milestone.m2 .milestone-dot { transition-delay: .36s; }
+    .milestone.m3 .milestone-dot { transition-delay: .58s; }
+    .milestone.m4 .milestone-dot { transition-delay: .8s; }
+    .product.reveal { opacity: 0; transform: translateX(34px) scale(.98); filter: blur(3px); transition: opacity .7s ease, transform .82s cubic-bezier(.2,.75,.2,1), filter .7s ease; transition-delay: 1.22s; }
+    .product.reveal.is-visible { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+    .milestone.m1 { transition-delay: .14s; }
+    .milestone.m2 { transition-delay: .36s; }
+    .milestone.m3 { transition-delay: .58s; }
+    .milestone.m4 { transition-delay: .8s; }
+    .stagger > .reveal:nth-child(2) { transition-delay: .08s; }
+    .stagger > .reveal:nth-child(3) { transition-delay: .16s; }
+    .stagger > .reveal:nth-child(4) { transition-delay: .24s; }
+    .stagger > .reveal:nth-child(5) { transition-delay: .32s; }
+    .proof-list.stagger > .reveal:nth-child(2) { transition-delay: .2s; }
+    .proof-list.stagger > .reveal:nth-child(3) { transition-delay: .4s; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .product.reveal { opacity: 1; transform: none; filter: none; }
+      .timeline-line.reveal { clip-path: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" id="top">
+    <header class="topbar reveal" data-reveal="text">
+      <a href="#top" aria-label="Hair and Me home"><img class="logo" src="assets/hair-me-logo.svg" alt="Hair + Me" /></a>
+      <button class="menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </header>
+    <div class="progress reveal" data-reveal="text" aria-label="Consultation 95 percent complete">
+      <div class="progress-copy"><span>Your Consultation</span><span>95% completed</span></div>
+      <div class="progress-track"><span class="progress-value"></span></div>
+    </div>
+
+    <section class="hero">
+      <h1 class="reveal" data-reveal="text">Bringing the <span class="accent">best</span> of medical science to you</h1>
+      <p class="ingredient-title reveal" data-reveal="text">Meet <span class="accent">Minoxidil –</span><br />our hero ingredient</p>
+      <div class="product reveal" data-reveal="card"><img src="assets/minoxidil-product.png" alt="Minoxidil treatment bottle" /></div>
+      <div class="proof-list stagger">
+        <div class="proof reveal" data-reveal="card">Works as a regrowth fertiliser for your hair</div>
+        <div class="proof reveal" data-reveal="card">A licensed drug in the UK to treat hereditary hair loss</div>
+        <div class="proof reveal" data-reveal="card">One of the most widely studied hair loss treatments</div>
+      </div>
+    </section>
+
+    <section class="content-section mechanism">
+      <div>
+        <h2 class="section-title reveal" data-reveal="text">How does <span class="accent">Minoxidil</span> work?</h2>
+        <p class="section-intro reveal" data-reveal="text">It nourishes your follicles to <span class="accent">grow longer, thicker hairs</span></p>
+      </div>
+      <div class="mechanism-cards stagger">
+        <article class="mechanism-card reveal" data-reveal="card"><img src="assets/minoxidil-illustration1.png" alt="Hair follicle illustration" /><div><h3>Widens blood vessels</h3><p>Minoxidil <span class="accent">widens the small blood vessels</span> around each hair follicle.</p></div></article>
+        <article class="mechanism-card reveal" data-reveal="card"><img src="assets/minoxidil-illustration2.png" alt="Nourished hair follicle illustration" /><div><h3>Nourishes the follicles</h3><p>Minoxidil brings <span class="accent">more oxygen and nutrients</span> to the follicle.</p></div></article>
+        <article class="mechanism-card reveal" data-reveal="card"><img src="assets/minoxidil-illustration3.png" alt="Growing hair illustration" /><div><h3>Extends the growth phase</h3><p>Each hair stays in its growing stage for longer, so it <span class="accent">grows longer and thicker.</span></p></div></article>
+        <a class="learn" href="https://www.hairandme.com/ingredients">Learn more</a>
+      </div>
+    </section>
+
+    <section class="content-section timeline-section">
+      <h2 class="section-title reveal" data-reveal="text">Visible <span class="accent">results</span> in 3–6 months</h2>
+      <div class="timeline">
+        <img class="timeline-line" src="assets/timeline-connector.svg" alt="" />
+        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/timeline-month5.png" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/timeline-month3.png" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><img class="follicles" src="assets/timeline-month1.png" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><img class="follicles" src="assets/timeline-day1.png" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+      </div>
+      <p class="timeline-foot reveal" data-reveal="text">Results continue with ongoing use</p>
+    </section>
+
+    <section class="content-section results-section" id="results">
+      <h2 class="section-title reveal" data-reveal="text">Real <span class="accent">results</span>, real people</h2>
+      <div class="results-grid stagger">
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient1-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient1-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Prevent, stop or reverse hair loss</p><span class="patient">36, Male</span></article>
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient2-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient2-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Thicker, denser, more voluminous hair</p><span class="patient">41, Male</span></article>
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient3-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient3-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Prevent, stop or reverse hair loss</p><span class="patient">34, Male</span></article>
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient4-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient4-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Thicker, denser, more voluminous hair</p><span class="patient">32, Female</span></article>
+      </div>
+    </section>
+
+    <section class="content-section side-effects">
+      <h2 class="section-title reveal" data-reveal="text"><span class="accent">Possible</span> side effects</h2>
+      <div class="effects stagger">
+        <article class="effect reveal" data-reveal="card"><span class="effect-icon"><img src="assets/side-effect-icon1.svg" alt="" /></span><div><h3>Scalp irritation</h3><p>Some people notice irritation on the scalp where they apply it. Tell your clinician if it happens.</p></div></article>
+        <article class="effect reveal" data-reveal="card"><span class="effect-icon"><img src="assets/side-effect-icon2.svg" alt="" /></span><div><h3>Unwanted hair growth elsewhere</h3><p>Hair may grow in places other than your scalp. Your clinician can help.</p></div></article>
+      </div>
+      <p class="clinician-note reveal" data-reveal="text">You’re not on your own—our UK-licensed clinicians are here if you have concerns during treatment.</p>
+    </section>
+
+    <aside class="approved reveal" data-reveal="card"><div class="approved-heading"><span class="approved-icon-wrap"><img src="assets/approved-check-white.svg" alt="" /></span>Expert approved treatment</div><p>Every Hair + Me treatment plan is checked by a prescriber before anything is sent.</p></aside>
+
+    <section class="seal-section" aria-label="Hair + Me accredited care">
+      <div class="seal-wrap" id="seal"><img class="seal" src="assets/brand-seal.png" alt="Hair + Me care seal" /></div>
+    </section>
+  </main>
+  <footer class="footer-cta reveal" data-reveal="text" id="plan"><p>Ready to see your personalised treatment plan?</p><a class="primary" href="#shopping-bag">View my plan</a></footer>
+  <section class="bag-screen" id="shopping-bag-screen" aria-label="Your shopping bag" hidden>
+    <header class="bag-header">
+      <a href="#top" aria-label="Hair + Me home"><img class="bag-logo" src="assets/hair-me-logo.svg" alt="Hair + Me" /></a>
+      <button class="menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </header>
+    <main class="bag-main">
+      <span class="bag-walmart" aria-hidden="true">✳</span>
+      <h1 class="bag-title">Your shopping bag</h1>
+      <p class="shipping-note">Your order qualifies for complimentary standard shipping.</p>
+      <article class="bag-card">
+        <img class="bag-product" src="assets/minoxidil-product.png" alt="Hair + Me personalised treatment bottle" />
+        <div class="bag-product-meta">
+          <span class="prescription-label">Prescription</span>
+          <h2 class="bag-product-title">Personalised<br />treatment</h2>
+          <p class="bag-product-description">4 week supply · 12ml</p>
+        </div>
+      </article>
+      <section class="price-card" aria-label="Order summary">
+        <div class="price-row"><span>Subtotal</span><span><strong>£14.99</strong><span class="old-price">£34.99</span></span></div>
+        <div class="price-row"><span>Shipping</span><span>FREE</span></div>
+        <div class="price-rule"></div>
+        <div class="price-row"><strong>Total to pay</strong><strong>£14.99</strong></div>
+      </section>
+      <section class="redeem" aria-label="Redeem offer">
+        <h2 class="redeem-title">Redeem offer</h2>
+        <div class="redeem-controls">
+          <input class="redeem-input" type="text" value="HGBRAND1M" aria-label="Offer code" />
+          <button class="redeem-apply" type="button" disabled>Apply</button>
+        </div>
+        <div class="offer-applied" role="status"><span class="offer-check" aria-hidden="true">✓</span><span>Offer applied</span></div>
+      </section>
+    </main>
+    <div class="bag-continue-wrap"><button class="bag-continue" type="button">Continue to checkout</button></div>
+  </section>
+  <script>
+    (() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const observed = document.querySelectorAll('.reveal, .seal-wrap, .timeline');
+      const page = document.querySelector('.page');
+      const pageFooter = document.querySelector('.footer-cta');
+      const bagScreen = document.querySelector('#shopping-bag-screen');
+      const syncScreen = () => {
+        const showBag = window.location.hash === '#shopping-bag';
+        page.hidden = showBag;
+        pageFooter.hidden = showBag;
+        bagScreen.hidden = !showBag;
+        document.title = showBag ? 'Your shopping bag | Hair + Me' : 'Your Hair + Me treatment plan';
+        if (showBag) window.scrollTo(0, 0);
+      };
+      window.addEventListener('hashchange', syncScreen);
+      syncScreen();
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        observed.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver((entries, io) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          });
+        }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
+        observed.forEach((el) => observer.observe(el));
+      }
+
+      const seal = document.querySelector('.seal-wrap');
+      if (!reduceMotion && seal && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        let frame = 0;
+        seal.addEventListener('pointermove', (event) => {
+          const bounds = seal.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width - .5;
+          const y = (event.clientY - bounds.top) / bounds.height - .5;
+          cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => {
+            seal.style.setProperty('--tilt-x', `${-y * 5}deg`);
+            seal.style.setProperty('--tilt-y', `${x * 7}deg`);
+            seal.style.transform = `rotateX(${-y * 5}deg) rotateY(${x * 7}deg) translateZ(2px)`;
+          });
+        });
+        seal.addEventListener('pointerleave', () => {
+          cancelAnimationFrame(frame);
+          seal.style.transform = '';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

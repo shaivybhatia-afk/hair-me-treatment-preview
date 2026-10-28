@@ -63,7 +63,7 @@
     .content-section { padding: 36px 16px 38px; }
     .work { padding-top: 0; }
     .section-title { margin-bottom: 20px; }
-    .mechanism-copy { display: grid; gap: 10px; margin-bottom: 20px; }
+    .mechanism-copy { display: grid; gap: 11px; margin-bottom: 22px; }
     .mechanism-copy .section-title, .mechanism-copy .section-intro { margin: 0; }
     .section-intro { max-width: 325px; color: var(--muted); font: 16px/1.45 var(--sans); margin: 0 0 24px; }
     .section-intro .accent { font-weight: 400; }
@@ -129,11 +129,9 @@
     @keyframes note-highlight { 0% { opacity: 0; clip-path: inset(0 100% 0 0); } 30% { opacity: 1; clip-path: inset(0 0 0 0); } 65% { opacity: .72; clip-path: inset(0 0 0 0); } 100% { opacity: 0; clip-path: inset(0 0 0 0); } }
     .clinician-team { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; margin: 24px 4px 0; text-align: center; }
     .clinician-portraits { display: flex; align-items: center; justify-content: center; padding-left: 2px; }
-    .clinician-portraits img { width: 50px; height: 50px; display: block; object-fit: cover; object-position: center 28%; border: 2px solid var(--cream); border-radius: 50%; background: #eee9e1; box-shadow: 0 2px 8px rgba(27,49,175,.10); opacity: 0; transform: scale(.86); transition: opacity .42s ease, transform .58s cubic-bezier(.2,.75,.2,1); }
-    .clinician-team.is-visible .clinician-portraits img:first-child { opacity: 1; transform: scale(1); transition-delay: .02s; }
-    .clinician-team.is-visible .clinician-portraits img:last-child { opacity: 1; transform: translateX(0) scale(1); transition-delay: .16s; }
+    .clinician-portraits img { width: 50px; height: 50px; display: block; object-fit: cover; object-position: center 28%; border: 2px solid var(--cream); border-radius: 50%; background: #eee9e1; opacity: 0; transform: translateY(5px); transition: opacity .45s ease, transform .5s cubic-bezier(.2,.75,.2,1); }
+    .clinician-team.is-visible .clinician-portraits img { opacity: 1; transform: translateY(0); }
     .clinician-portraits img + img { margin-left: -8px; }
-    .clinician-portraits img:last-child { transform: translateX(-10px) scale(.86); }
     .clinician-team-label { display: none; }
 
     .approved { margin: 18px 16px 30px; padding: 14px 12px; color: #fff; background: linear-gradient(135deg, var(--blue), var(--blue-light)); }

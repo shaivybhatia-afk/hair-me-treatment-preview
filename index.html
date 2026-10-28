@@ -80,11 +80,7 @@
     .milestone { position: absolute; display: flex; gap: 11px; align-items: center; width: 162px; font-size: 12px; line-height: 1.28; }
     .milestone-art { width: 52px; height: 58px; position: relative; flex: 0 0 52px; }
     .milestone-art .bubble-shape { position: absolute; left: 0; top: 0; }
-    .milestone-art .follicles { position: absolute; left: 2px; top: 0; width: 42.85px; height: 52px; background-image: url("assets/follicle-stages.png"); background-size: 200% 200%; background-repeat: no-repeat; }
-    .follicles.stage-day1 { background-position: 0 0; }
-    .follicles.stage-month1 { background-position: 100% 0; }
-    .follicles.stage-month3 { background-position: 0 100%; }
-    .follicles.stage-month5 { background-position: 100% 100%; }
+    .milestone-art .follicles { position: absolute; left: 2px; top: 0; width: 42.85px; height: 52px; object-fit: contain; }
     .milestone strong { display: block; font-size: 13px; margin-bottom: 4px; }
     .milestone span { display: block; }
     .milestone.m1 { top: 0; left: 156.95px; }
@@ -244,10 +240,10 @@
       <h2 class="section-title reveal" data-reveal="text">Visible <span class="accent">results</span> in 3–6 months</h2>
       <div class="timeline">
         <img class="timeline-line" src="assets/timeline-connector.svg" alt="" />
-        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><span class="follicles stage-month5" role="img" aria-label="Hair follicle at month five"></span></span><div><strong>Month 5+</strong><span>More growth and density</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
-        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><span class="follicles stage-month3" role="img" aria-label="Hair follicle at months three to five"></span></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
-        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><span class="follicles stage-month1" role="img" aria-label="Hair follicle at months one to three"></span></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
-        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><span class="follicles stage-day1" role="img" aria-label="Hair follicle on day one"></span></span><div><strong>Day 1</strong><span>You start your plan</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/timeline-month5.png" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/timeline-month3.png" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><img class="follicles" src="assets/timeline-month1.png" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
+        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><img class="follicles" src="assets/timeline-day1.png" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div><span class="milestone-dot" aria-hidden="true"></span></div>
       </div>
       <p class="timeline-foot reveal" data-reveal="text">Results continue with ongoing use</p>
     </section>

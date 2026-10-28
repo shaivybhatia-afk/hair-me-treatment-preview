@@ -22,11 +22,11 @@
       --body: "Proxima Nova", "Avenir Next", Avenir, "Segoe UI", sans-serif;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 56px; }
     body { margin: 0; background: #f1eee8; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     button, a { font: inherit; }
-    .page { width: min(100%, 393px); margin: 0 auto; min-height: 100vh; padding-bottom: 120px; background: var(--cream); overflow: clip; position: relative; box-shadow: 0 0 60px rgba(35, 34, 29, .07); }
-    .topbar { height: 56px; padding: 0 16px; margin: 0; display: flex; align-items: center; justify-content: space-between; background: #fff; position: sticky; top: 0; z-index: 20; }
+    .page { width: min(100%, 393px); margin: 0 auto; min-height: 100vh; padding: 56px 0 120px; background: var(--cream); overflow: clip; position: relative; box-shadow: 0 0 60px rgba(35, 34, 29, .07); }
+    .topbar { position: fixed; inset: 0 0 auto; width: min(393px, 100vw); height: 56px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; background: #fff; z-index: 30; }
     .logo { display: block; }
     .menu { width: 40px; height: 40px; padding: 4px; border: 0; background: transparent; display: flex; flex-direction: column; justify-content: center; gap: 8px; cursor: pointer; }
     .menu span { width: 32px; height: 2px; background: var(--ink); display: block; transition: transform .35s cubic-bezier(.2,.7,.2,1), width .35s ease; }

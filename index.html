@@ -33,26 +33,30 @@
     .menu span:last-child { width: 32px; }
     .menu:hover span:first-child { transform: translateY(4px) rotate(4deg); }
     .menu:hover span:last-child { width: 32px; transform: translateY(-4px) rotate(-4deg); }
-    .progress { padding: 17px 16px 0; background: var(--cream); }
+    .progress { padding: 12px 16px 0; background: var(--cream); }
     .progress-copy { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; line-height: 24px; }
     .progress-track { margin-top: 6px; height: 2px; background: #d9d6d1; position: relative; }
     .progress-value { display: block; height: 100%; width: 95%; background: var(--blue); transform-origin: left; animation: progress-in 1.2s cubic-bezier(.2,.65,.2,1) both; }
     @keyframes progress-in { from { transform: scaleX(.12); } to { transform: scaleX(1); } }
 
-    .hero { min-height: 530px; position: relative; padding: 24px 16px 30px; }
+    .hero { min-height: 558px; position: relative; padding: 46px 16px 30px; }
+    .hero::before { content: ""; position: absolute; z-index: 0; pointer-events: none; left: 0; top: -126px; width: 393px; height: 671px; opacity: .7; background: url("assets/hero-bg.png") top center / 393px 671px no-repeat; }
+    .hero::after { content: ""; position: absolute; z-index: 0; pointer-events: none; left: 0; top: 555px; width: 393px; height: 35px; background: url("assets/hero-footer-texture.png") center / 393px 35px no-repeat; }
     .hero h1, .section-title { font: 600 30px/1.2 var(--serif); letter-spacing: .01em; margin: 0; }
     .hero h1 { max-width: 355px; position: relative; z-index: 1; }
     .accent { color: var(--blue); }
-    .ingredient-title { position: absolute; z-index: 2; left: 16px; top: 140px; margin: 0; width: 215px; font: 500 22px/28px var(--serif); }
-    .product { position: absolute; width: 83.93px; height: 397.99px; top: 121.35px; right: 25px; z-index: 0; overflow: hidden; }
-    .product img { position: absolute; width: 355.65%; height: 100%; left: -138.96%; top: 0; max-width: none; display: block; }
-    .proof-list { position: absolute; left: 16px; top: 234.75px; z-index: 2; width: min(254px, calc(100vw - 126px)); height: 243px; }
-    .proof-list::before { content: ""; position: absolute; left: 8.25px; top: 22px; bottom: 59px; width: 1.5px; background: #deddea; }
-    .proof { position: absolute; left: 0; display: flex; align-items: flex-start; width: 100%; min-height: 80px; padding: 12px 10px 10px 34px; border: 0; background: transparent; color: var(--blue); font-size: 13px; font-weight: 600; line-height: 17px; }
-    .proof::before { content: ""; position: absolute; left: -1px; top: 12px; transform: none; width: 20px; height: 20px; background: url("assets/proof-check.svg") center / 20px 20px no-repeat; }
+    .ingredient-title { position: absolute; z-index: 2; left: 16px; top: 162.75px; margin: 0; width: 204.3px; font: 500 22px/26px var(--serif); }
+    .product { position: absolute; width: 315px; height: 420px; top: 154px; left: 163px; z-index: 0; overflow: hidden; pointer-events: none; }
+    .product img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+    .proof-list { position: absolute; left: 16px; top: 248.5px; z-index: 2; width: min(254px, calc(100vw - 126px)); height: 243px; }
+    .proof-list::before { content: ""; position: absolute; left: 13px; top: 3.23px; width: 1px; height: 221px; background: url("assets/proof-line-figma.svg") center / 1px 221px no-repeat; }
+    .proof { position: absolute; left: 0; display: flex; align-items: flex-start; width: 100%; min-height: 80px; padding: 0 10px 0 39px; border: 0; background: transparent; color: #343434; font-size: 13px; font-weight: 600; line-height: 19px; }
+    .proof::before { content: ""; position: absolute; left: 4px; top: 1.5px; transform: none; width: 20px; height: 20px; background: url("assets/proof-check-figma.svg") center / 20px 20px no-repeat; }
     .proof:nth-child(1) { top: 0; }
-    .proof:nth-child(2) { top: 81.35px; }
-    .proof:nth-child(3) { top: 162.38px; }
+    .proof:nth-child(2) { top: 102.76px; }
+    .proof:nth-child(3) { top: 204.63px; }
+    .proof:nth-child(1), .proof:nth-child(3) { max-width: 166px; }
+    .proof:nth-child(2) { max-width: 189px; }
     .proof.is-visible::before { animation: proof-tick-in .52s cubic-bezier(.2,.75,.2,1) both; }
     .proof-list.stagger > .reveal:nth-child(2).is-visible::before { animation-delay: .2s; }
     .proof-list.stagger > .reveal:nth-child(3).is-visible::before { animation-delay: .4s; }
@@ -80,8 +84,19 @@
     @keyframes timeline-path-reveal { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
     .milestone { position: absolute; display: flex; gap: 11px; align-items: center; width: 162px; font-size: 12px; line-height: 1.28; }
     .milestone-art { width: 52px; height: 58px; position: relative; flex: 0 0 52px; }
-    .milestone-art .bubble-shape { position: absolute; left: 0; top: 0; }
-    .milestone-art .follicles { position: absolute; left: 50%; top: 50%; width: 52px; height: 58px; object-fit: contain; object-position: center; transform: translate(-50%, -50%); }
+    .milestone-art .bubble-shape { position: absolute; left: 0; top: 0; width: 52px; height: 58px; }
+    .milestone-art .follicles { position: absolute; left: 2.14px; top: 0; width: 42.85px; height: 52px; object-fit: contain; object-position: center; }
+    .timeline-marker { position: absolute; display: block; width: 10px; height: 10px; top: 70px; z-index: 2; }
+    .timeline-marker img { width: 10px; height: 10px; display: block; }
+    @keyframes timeline-marker-in { from { opacity: 0; transform: scale(.35); } 72% { opacity: 1; transform: scale(1.16); } to { opacity: 1; transform: scale(1); } }
+    .timeline.is-visible .m1 .timeline-marker { animation: timeline-marker-in .42s .4s cubic-bezier(.2,.75,.2,1) both; }
+    .timeline.is-visible .m2 .timeline-marker { animation: timeline-marker-in .42s 1s cubic-bezier(.2,.75,.2,1) both; }
+    .timeline.is-visible .m3 .timeline-marker { animation: timeline-marker-in .42s 1.55s cubic-bezier(.2,.75,.2,1) both; }
+    .timeline.is-visible .m4 .timeline-marker { animation: timeline-marker-in .42s 2s cubic-bezier(.2,.75,.2,1) both; }
+    .milestone.m1 .timeline-marker { left: 21px; top: 71px; }
+    .milestone.m2 .timeline-marker { left: 21px; top: 71px; }
+    .milestone.m3 .timeline-marker { left: 107px; top: 70px; }
+    .milestone.m4 .timeline-marker { left: 21px; top: 70px; }
     .milestone strong { display: block; font-size: 13px; margin-bottom: 4px; }
     .milestone span { display: block; }
     .milestone.m1 { top: 0; left: 156.95px; }
@@ -118,7 +133,7 @@
     .clinician-portraits { display: flex; align-items: center; justify-content: center; padding-left: 2px; }
     .clinician-portraits img { width: 50px; height: 50px; display: block; object-fit: cover; object-position: center 28%; border: 2px solid var(--cream); border-radius: 50%; background: #eee9e1; box-shadow: 0 2px 8px rgba(27,49,175,.10); }
     .clinician-portraits img + img { margin-left: -8px; }
-    .clinician-team-label { color: var(--muted); font-size: 12px; line-height: 16px; }
+    .clinician-team-label { display: none; }
 
     .approved { margin: 18px 16px 30px; padding: 14px 12px; color: #fff; background: linear-gradient(135deg, var(--blue), var(--blue-light)); }
     .approved-heading { display: flex; align-items: center; gap: 8px; font: 700 16px/22px var(--body); }
@@ -212,8 +227,8 @@
 
     <section class="hero">
       <h1 class="reveal" data-reveal="text">Bringing the <span class="accent">best</span> of medical science to you</h1>
-      <p class="ingredient-title reveal" data-reveal="text">Meet <span class="accent">Minoxidil –</span><br />our hero ingredient</p>
-      <div class="product reveal" data-reveal="card"><img src="assets/minoxidil-product.png" alt="Minoxidil treatment bottle" /></div>
+      <p class="ingredient-title reveal" data-reveal="text">Meet <span class="accent">Minoxidil –</span><br />Our hero ingredient</p>
+      <div class="product reveal" data-reveal="card"><img src="assets/hero-product-scene.png" alt="Minoxidil treatment bottle" /></div>
       <div class="proof-list stagger">
         <div class="proof reveal" data-reveal="card">Works as a regrowth fertiliser for your hair</div>
         <div class="proof reveal" data-reveal="card">A licensed drug in the UK to treat hereditary hair loss</div>
@@ -237,11 +252,11 @@
     <section class="content-section timeline-section">
       <h2 class="section-title reveal" data-reveal="text">Visible <span class="accent">results</span> in 3–6 months</h2>
       <div class="timeline">
-        <img class="timeline-line" src="assets/timeline-connector.svg" alt="" />
-        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/follicle-progress-month5-plus.svg" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div></div>
-        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/follicle-progress-month3-5.svg" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div></div>
-        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><img class="follicles" src="assets/follicle-progress-month1-3.svg" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div></div>
-        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><img class="follicles" src="assets/follicle-progress-day1.svg" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div></div>
+        <img class="timeline-line" src="assets/timeline-path-figma.svg" alt="" />
+        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-month5plus.png" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
+        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-month3-5.png" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
+        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union1.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-month1-3.png" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
+        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union2.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-day1.png" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
       </div>
       <p class="timeline-foot reveal" data-reveal="text">Results continue with ongoing use</p>
     </section>
@@ -264,9 +279,8 @@
       </div>
       <div class="clinician-team reveal" data-reveal="card">
         <div class="clinician-portraits"><img src="assets/clinician-jason.png" alt="Dr Jason Thomson, consultant dermatologist" /><img src="assets/clinician-margo.png" alt="Dr Margo Gkini, consultant dermatologist" /></div>
-        <span class="clinician-team-label">Dr Jason Thomson · Dr Margo Gkini</span>
       </div>
-      <p class="clinician-note reveal" data-reveal="text">You’re not on your own—our UK-licensed clinicians are here if you have concerns during treatment.</p>
+      <p class="clinician-note reveal" data-reveal="text">You’re not on your own. Our expert clinicians are here to support you.</p>
     </section>
 
     <aside class="approved reveal" data-reveal="card"><div class="approved-heading"><span class="approved-icon-wrap"><img src="assets/approved-check-white.svg" alt="" /></span>Expert approved treatment</div><p>Every Hair + Me treatment plan is checked by a prescriber before anything is sent.</p></aside>

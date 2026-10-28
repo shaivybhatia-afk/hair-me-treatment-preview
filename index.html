@@ -40,14 +40,12 @@
     @keyframes progress-in { from { transform: scaleX(.12); } to { transform: scaleX(1); } }
 
     .hero { min-height: 558px; position: relative; padding: 46px 16px 30px; }
-    .hero::before { content: ""; position: absolute; z-index: 0; pointer-events: none; left: 0; top: -126px; width: 393px; height: 671px; opacity: .7; background: url("assets/hero-bg.png") top center / 393px 851px no-repeat; }
-    .hero::after { content: ""; position: absolute; z-index: 0; pointer-events: none; left: 0; top: 555px; width: 393px; height: 35px; background: url("assets/hero-footer-texture.png") center / 393px 35px no-repeat; }
     .hero h1, .section-title { font: 600 30px/1.2 var(--serif); letter-spacing: .01em; margin: 0; }
     .hero h1 { max-width: 355px; position: relative; z-index: 1; }
     .accent { color: var(--blue); }
     .ingredient-title { position: absolute; z-index: 2; left: 16px; top: 162.75px; margin: 0; width: 204.3px; font: 500 22px/26px var(--serif); }
-    .product { position: absolute; width: 315px; height: 420px; top: 154px; left: 163px; z-index: 0; overflow: hidden; pointer-events: none; }
-    .product img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+    .hero-scene { position: absolute; z-index: 0; pointer-events: none; left: 0; top: -8px; width: 393px; height: 597px; overflow: hidden; }
+    .hero-scene img { display: block; width: 100%; height: 100%; object-fit: fill; }
     .proof-list { position: absolute; left: 16px; top: 248.5px; z-index: 2; width: min(254px, calc(100vw - 126px)); height: 243px; }
     .proof-list::before { content: ""; position: absolute; left: 13px; top: 3.23px; width: 1px; height: 221px; background: url("assets/proof-line-figma.svg") center / 1px 221px no-repeat; }
     .proof { position: absolute; left: 0; display: flex; align-items: flex-start; width: 100%; min-height: 80px; padding: 0 10px 0 39px; border: 0; background: transparent; color: #343434; font-size: 13px; font-weight: 600; line-height: 19px; }
@@ -199,8 +197,8 @@
     .reveal[data-reveal="text"] { transform: translateY(12px); transition-duration: .85s; }
     .hero h1.reveal, .section-title.reveal { opacity: 0; transform: translateY(20px); filter: blur(5px); transition: opacity .78s cubic-bezier(.2,.7,.2,1), transform .82s cubic-bezier(.2,.7,.2,1), filter .78s ease; }
     .hero h1.reveal.is-visible, .section-title.reveal.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
-    .product.reveal { opacity: 0; transform: translateX(34px) scale(.98); filter: blur(3px); transition: opacity .7s ease, transform .82s cubic-bezier(.2,.75,.2,1), filter .7s ease; transition-delay: 1.22s; }
-    .product.reveal.is-visible { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+    .hero-scene.reveal { opacity: 0; transform: translateX(16px); filter: blur(1px); transition: opacity .8s ease, transform .9s cubic-bezier(.2,.75,.2,1), filter .8s ease; transition-delay: .58s; }
+    .hero-scene.reveal.is-visible { opacity: 1; transform: translateX(0); filter: blur(0); }
     .milestone.m1 { transition-delay: .14s; }
     .milestone.m2 { transition-delay: .36s; }
     .milestone.m3 { transition-delay: .58s; }
@@ -215,7 +213,7 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
       .ingredient-title.reveal { filter: none; }
-      .product.reveal { opacity: 1; transform: none; filter: none; }
+      .hero-scene.reveal { opacity: 1; transform: none; filter: none; }
       .clinician-portraits img { opacity: 1; transform: none; transition: none; }
       .timeline-line.reveal { clip-path: none; }
     }
@@ -235,7 +233,7 @@
     <section class="hero">
       <h1 class="reveal" data-reveal="text">Bringing the <span class="accent">best</span> of medical science to you</h1>
       <p class="ingredient-title reveal" data-reveal="text">Meet <span class="accent">Minoxidil –</span><br />Our hero ingredient</p>
-      <div class="product reveal" data-reveal="card"><img src="assets/hero-product-scene.png" alt="Minoxidil treatment bottle" /></div>
+      <div class="hero-scene reveal" data-reveal="card" aria-hidden="true"><img src="assets/hero-composite-reference.png" alt="" /></div>
       <div class="proof-list stagger">
         <div class="proof reveal" data-reveal="card">Works as a regrowth fertiliser for your hair</div>
         <div class="proof reveal" data-reveal="card">A licensed drug in the UK to treat hereditary hair loss</div>

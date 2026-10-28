@@ -47,17 +47,20 @@
     .hero-scene { position: absolute; z-index: 0; pointer-events: none; left: 0; top: -8px; width: 393px; height: 597px; overflow: hidden; }
     .hero-scene img { display: block; width: 100%; height: 100%; object-fit: fill; }
     .proof-list { position: absolute; left: 16px; top: 248.5px; z-index: 2; width: min(254px, calc(100vw - 126px)); height: 243px; }
-    .proof-list::before { content: ""; position: absolute; left: 13px; top: 3.23px; width: 1px; height: 221px; background: url("assets/proof-line-figma.svg") center / 1px 221px no-repeat; }
+    .proof-list::before { content: ""; position: absolute; left: 13px; top: 3.23px; width: 1px; height: 221px; background: url("assets/proof-line-figma.svg") center / 1px 221px no-repeat; opacity: 0; transition: opacity .28s ease; }
+    .proof-list.is-visible::before { opacity: 1; transition-delay: .92s; }
+    .proof-list.reveal { opacity: 1; transform: none; transition: none; }
     .proof { position: absolute; left: 0; display: flex; align-items: flex-start; width: 100%; min-height: 80px; padding: 0 10px 0 39px; border: 0; background: transparent; color: #343434; font-size: 13px; font-weight: 600; line-height: 19px; }
+    .proof.reveal { transform: none; transition: opacity .28s ease; }
     .proof::before { content: ""; position: absolute; left: 4px; top: 1.5px; transform: none; width: 20px; height: 20px; background: url("assets/proof-check-figma.svg") center / 20px 20px no-repeat; }
     .proof:nth-child(1) { top: 0; }
     .proof:nth-child(2) { top: 102.76px; }
     .proof:nth-child(3) { top: 204.63px; }
     .proof.is-visible::before { animation: proof-tick-in .52s cubic-bezier(.2,.75,.2,1) both; }
-    .proof-list.stagger > .reveal:nth-child(1).is-visible::before { animation-delay: 1.46s; }
-    .proof-list.stagger > .reveal:nth-child(2).is-visible::before { animation-delay: 1.68s; }
-    .proof-list.stagger > .reveal:nth-child(3).is-visible::before { animation-delay: 1.9s; }
-    @keyframes proof-tick-in { 0% { opacity: 0; transform: scale(.45); } 70% { opacity: 1; transform: scale(1.14); } 100% { opacity: 1; transform: scale(1); } }
+    .proof-list.stagger > .reveal:nth-child(1).is-visible::before { animation-delay: .92s; }
+    .proof-list.stagger > .reveal:nth-child(2).is-visible::before { animation-delay: 1.12s; }
+    .proof-list.stagger > .reveal:nth-child(3).is-visible::before { animation-delay: 1.32s; }
+    @keyframes proof-tick-in { from { opacity: 0; } to { opacity: 1; } }
 
     .content-section { padding: 36px 16px 38px; }
     .work { padding-top: 0; }
@@ -188,14 +191,16 @@
 
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    .ingredient-title.reveal { opacity: 0; transform: translateY(14px); filter: blur(3px); transition: opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1), filter .55s ease; transition-delay: .84s; }
-    .ingredient-title.reveal.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .ingredient-title.reveal { opacity: 0; transform: none; filter: none; transition: opacity .32s ease; transition-delay: .42s; }
+    .ingredient-title.reveal.is-visible { opacity: 1; transform: none; filter: none; }
     .approved.reveal { transition-duration: .42s; }
     .reveal[data-reveal="text"] { transform: translateY(12px); transition-duration: .85s; }
     .hero h1.reveal, .section-title.reveal { opacity: 0; transform: translateY(20px); filter: blur(5px); transition: opacity .78s cubic-bezier(.2,.7,.2,1), transform .82s cubic-bezier(.2,.7,.2,1), filter .78s ease; }
+    .hero h1.reveal { transform: none; filter: none; transition: opacity .32s ease; }
     .hero h1.reveal.is-visible, .section-title.reveal.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
-    .hero-scene.reveal { opacity: 0; transform: translateX(16px); filter: blur(1px); transition: opacity .8s ease, transform .9s cubic-bezier(.2,.75,.2,1), filter .8s ease; transition-delay: .58s; }
-    .hero-scene.reveal.is-visible { opacity: 1; transform: translateX(0); filter: blur(0); }
+    .hero h1.reveal.is-visible { transform: none; filter: none; }
+    .hero-scene.reveal { opacity: 0; transform: none; filter: none; transition: opacity .35s ease; transition-delay: .58s; }
+    .hero-scene.reveal.is-visible { opacity: 1; transform: none; filter: none; }
     .milestone.m1 { transition-delay: .14s; }
     .milestone.m2 { transition-delay: .36s; }
     .milestone.m3 { transition-delay: .58s; }
@@ -232,7 +237,7 @@
       <h1 class="reveal" data-reveal="text">Bringing the <span class="accent">best</span> of medical science to you</h1>
       <p class="ingredient-title reveal" data-reveal="text">Meet <span class="accent">Minoxidil –</span><br />Our hero ingredient</p>
       <div class="hero-scene reveal" data-reveal="card" aria-hidden="true"><img src="assets/hero-composite-reference.png" alt="" /></div>
-      <div class="proof-list stagger">
+      <div class="proof-list stagger reveal" data-reveal="card">
         <div class="proof reveal" data-reveal="card">Works as a regrowth fertiliser<br />for your hair.</div>
         <div class="proof reveal" data-reveal="card">A licensed drug in the UK to treat hereditary hair loss.</div>
         <div class="proof reveal" data-reveal="card">One of the most widely studied hair loss treatments.</div>

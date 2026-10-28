@@ -110,13 +110,13 @@
     .effect-icon img { width: auto; height: auto; }
     .effect h3 { font: 600 16px/24px var(--sans); margin: 0 0 4px; }
     .effect p { font: 12px/18px var(--sans); margin: 0; }
-    .clinician-note { position: relative; isolation: isolate; margin: 18px 4px 0; font-size: 15px; line-height: 24px; }
+    .clinician-note { position: relative; isolation: isolate; margin: 12px 12px 0; font-size: 15px; line-height: 24px; text-align: center; }
     .clinician-note::before { content: ""; position: absolute; z-index: -1; inset: -5px -8px; border-radius: 2px; background: linear-gradient(90deg, rgba(27,49,175,.19), rgba(27,49,175,.08)); opacity: 0; clip-path: inset(0 100% 0 0); }
     .clinician-note.is-visible::before { animation: note-highlight 1.05s .1s ease-out both; }
     @keyframes note-highlight { 0% { opacity: 0; clip-path: inset(0 100% 0 0); } 30% { opacity: 1; clip-path: inset(0 0 0 0); } 65% { opacity: .72; clip-path: inset(0 0 0 0); } 100% { opacity: 0; clip-path: inset(0 0 0 0); } }
     .clinician-team { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; margin: 16px 4px 0; text-align: center; }
     .clinician-portraits { display: flex; align-items: center; justify-content: center; padding-left: 2px; }
-    .clinician-portraits img { width: 44px; height: 44px; display: block; object-fit: cover; object-position: center 28%; border: 2px solid var(--cream); border-radius: 50%; background: #eee9e1; }
+    .clinician-portraits img { width: 50px; height: 50px; display: block; object-fit: cover; object-position: center 28%; border: 2px solid var(--cream); border-radius: 50%; background: #eee9e1; box-shadow: 0 2px 8px rgba(27,49,175,.10); }
     .clinician-portraits img + img { margin-left: -8px; }
     .clinician-team-label { color: var(--muted); font-size: 12px; line-height: 16px; }
 
@@ -238,10 +238,10 @@
       <h2 class="section-title reveal" data-reveal="text">Visible <span class="accent">results</span> in 3–6 months</h2>
       <div class="timeline">
         <img class="timeline-line" src="assets/timeline-connector.svg" alt="" />
-        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/follicle-month5-plus.svg" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div></div>
-        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/follicle-month3-5.svg" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div></div>
-        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><img class="follicles" src="assets/follicle-month1-3.svg" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div></div>
-        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><img class="follicles" src="assets/follicle-day1.svg" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div></div>
+        <div class="milestone m1 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/follicle-progress-month5-plus.svg" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div></div>
+        <div class="milestone m2 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble.svg" alt="" /><img class="follicles" src="assets/follicle-progress-month3-5.svg" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div></div>
+        <div class="milestone m3 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-left.svg" alt="" /><img class="follicles" src="assets/follicle-progress-month1-3.svg" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div></div>
+        <div class="milestone m4 reveal" data-reveal="card"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-bubble-day1.svg" alt="" /><img class="follicles" src="assets/follicle-progress-day1.svg" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div></div>
       </div>
       <p class="timeline-foot reveal" data-reveal="text">Results continue with ongoing use</p>
     </section>
@@ -262,11 +262,11 @@
         <article class="effect reveal" data-reveal="card"><span class="effect-icon"><img src="assets/side-effect-icon1.svg" alt="" /></span><div><h3>Scalp irritation</h3><p>Some people notice irritation on the scalp where they apply it. Tell your clinician if it happens.</p></div></article>
         <article class="effect reveal" data-reveal="card"><span class="effect-icon"><img src="assets/side-effect-icon2.svg" alt="" /></span><div><h3>Unwanted hair growth elsewhere</h3><p>Hair may grow in places other than your scalp. Your clinician can help.</p></div></article>
       </div>
-      <p class="clinician-note reveal" data-reveal="text">You’re not on your own—our UK-licensed clinicians are here if you have concerns during treatment.</p>
       <div class="clinician-team reveal" data-reveal="card">
         <div class="clinician-portraits"><img src="assets/clinician-jason.png" alt="Dr Jason Thomson, consultant dermatologist" /><img src="assets/clinician-margo.png" alt="Dr Margo Gkini, consultant dermatologist" /></div>
-        <span class="clinician-team-label">Meet your clinical team</span>
+        <span class="clinician-team-label">Our UK-licensed clinical team</span>
       </div>
+      <p class="clinician-note reveal" data-reveal="text">You’re not on your own—our clinicians are here if you have concerns during treatment.</p>
     </section>
 
     <aside class="approved reveal" data-reveal="card"><div class="approved-heading"><span class="approved-icon-wrap"><img src="assets/approved-check-white.svg" alt="" /></span>Expert approved treatment</div><p>Every Hair + Me treatment plan is checked by a prescriber before anything is sent.</p></aside>

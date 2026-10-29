@@ -35,7 +35,7 @@
     .menu:hover span:last-child { width: 32px; transform: translateY(-4px) rotate(-4deg); }
     .progress { position: relative; z-index: 3; padding: 12px 16px 0; background: transparent; }
     .progress-copy { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; line-height: 24px; }
-    .progress-track { margin-top: 6px; height: 2px; background: #d9d6d1; position: relative; }
+    .progress-track { margin-top: 6px; height: 2px; background: #BFBAB3; position: relative; }
     .progress-value { display: block; height: 100%; width: 95%; background: var(--blue); transform-origin: left; animation: progress-in 1.2s cubic-bezier(.2,.65,.2,1) both; }
     @keyframes progress-in { from { transform: scaleX(.12); } to { transform: scaleX(1); } }
 
@@ -72,9 +72,6 @@
     .mechanism-cards { background: #fff; display: grid; gap: 13px; padding: 20px 12px 16px; }
     .mechanism-card { display: grid; grid-template-columns: 95px 1fr; gap: 16px; align-items: center; min-height: 92px; }
     .mechanism-card img { width: 87px; height: 85px; object-fit: contain; }
-    .mechanism-card:nth-child(3) { grid-template-columns: 70px 1fr; gap: 10px; }
-    .mechanism-card:nth-child(3) img { width: 70px; height: 70px; }
-    .mechanism-card:nth-child(3) p { font-size: 13.5px; }
     .mechanism-card h3 { font: 500 18px/1.3 var(--serif); margin: 0 0 7px; }
     .mechanism-card p { color: var(--muted); font: 14px/1.45 var(--sans); margin: 0; }
     .learn { display: block; width: fit-content; margin: 14px auto 0; color: var(--ink); font-size: 14px; text-underline-offset: 3px; }
@@ -273,7 +270,7 @@
       <div class="mechanism-cards stagger">
         <article class="mechanism-card reveal" data-reveal="card"><img src="assets/minoxidil-illustration1.png" alt="Hair follicle illustration" /><div><h3>Widens blood vessels</h3><p>Minoxidil <span class="accent">widens the small blood vessels</span> around each hair follicle.</p></div></article>
         <article class="mechanism-card reveal" data-reveal="card"><img src="assets/minoxidil-illustration2.png" alt="Nourished hair follicle illustration" /><div><h3>Nourishes the follicles</h3><p>Minoxidil brings <span class="accent">more oxygen and nutrients</span> to the follicle.</p></div></article>
-        <article class="mechanism-card reveal" data-reveal="card"><img src="assets/minoxidil-illustration3.png" alt="Growing hair illustration" /><div><h3>Extends the growth&nbsp;phase</h3><p>Each hair stays in its growing stage for longer, so it grows <span class="accent">longer and thicker.</span></p></div></article>
+        <article class="mechanism-card reveal" data-reveal="card"><img src="assets/minoxidil-illustration3.png" alt="Growing hair illustration" /><div><h3>Extends the growth&nbsp;phase</h3><p>Hair stays in the growth phase longer,<br />so it grows <span class="accent">longer and thicker.</span></p></div></article>
         <a class="learn" href="https://www.hairandme.com/ingredients" aria-haspopup="dialog" aria-controls="ingredients-modal">Learn more</a>
       </div>
     </section>

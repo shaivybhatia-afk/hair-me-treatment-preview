@@ -165,14 +165,15 @@
     .approved p { opacity: .85; font: 16px/22px var(--body); margin: 8px 0 0; }
 
     .seal-section { padding: 18px 16px 10px; display: flex; justify-content: center; perspective: 900px; }
-    .seal-wrap { width: 120px; height: 116px; position: relative; transform-style: preserve-3d; will-change: transform; }
-    .seal { width: 120px; height: 116px; object-fit: contain; display: block; filter: drop-shadow(0 8px 12px rgba(27,49,175,.12)); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .seal-wrap { width: 120px; height: 116px; position: relative; transform-style: preserve-3d; -webkit-transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 8px 12px rgba(27,49,175,.12)); }
+    .seal { width: 120px; height: 116px; object-fit: contain; display: block; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(.1px); }
+    .seal-back { position: absolute; inset: 0; transform: rotateY(180deg) translateZ(.1px); }
     .seal-wrap::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; background: linear-gradient(112deg, transparent 31%, rgba(255,255,255,.78) 48%, rgba(255,255,255,.18) 55%, transparent 70%); transform: translateX(-120%) rotate(12deg); -webkit-mask: url("assets/brand-seal.png") center / contain no-repeat; -webkit-mask-size: contain; -webkit-mask-position: center; -webkit-mask-repeat: no-repeat; mask: url("assets/brand-seal.png") center / contain no-repeat; }
-    .seal-wrap.is-visible { animation: seal-arrive 1.05s cubic-bezier(.22,.72,.2,1) both; }
-    @keyframes seal-arrive { 0% { opacity: 0; transform: rotateY(-22deg) rotateX(4deg) scale(.97); } 24% { opacity: 1; } 72% { transform: rotateY(5deg) rotateX(-1deg) scale(1.005); } 100% { opacity: 1; transform: rotateY(0) rotateX(0) scale(1); } }
-    .seal-wrap.is-tapped { animation: seal-tap-3d .72s cubic-bezier(.22,.72,.2,1) both; }
+    .seal-wrap.is-visible { animation: seal-arrive 1.8s cubic-bezier(.22,.66,.24,1) both; }
+    @keyframes seal-arrive { 0% { opacity: 0; transform: rotateY(-70deg) rotateX(8deg) scale(.92); } 22% { opacity: 1; } 58% { transform: rotateY(168deg) rotateX(4deg) scale(1.01); } 100% { opacity: 1; transform: rotateY(360deg) rotateX(0) scale(1); } }
+    .seal-wrap.is-tapped { animation: seal-tap-3d .8s cubic-bezier(.22,.66,.24,1) both; }
     .seal-wrap.is-tapped::after { animation: seal-shine .9s ease-out both; }
-    @keyframes seal-tap-3d { 0% { transform: rotateX(0) rotateY(0) scale(1); } 45% { transform: rotateX(-4deg) rotateY(11deg) scale(1.015); } 100% { transform: rotateX(0) rotateY(0) scale(1); } }
+    @keyframes seal-tap-3d { 0% { transform: rotateX(0) rotateY(0) scale(1); } 42% { transform: rotateX(-7deg) rotateY(18deg) scale(1.025); } 76% { transform: rotateX(3deg) rotateY(-7deg) scale(1.008); } 100% { transform: rotateX(0) rotateY(0) scale(1); } }
     @keyframes seal-shine { 0% { opacity: 0; transform: translateX(-120%) rotate(12deg); } 25% { opacity: .85; } 100% { opacity: 0; transform: translateX(120%) rotate(12deg); } }
     .footer-cta { position: fixed; z-index: 10; left: 0; right: 0; bottom: 0; width: min(393px, 100vw); margin: 0 auto; padding: 12px 24px calc(16px + env(safe-area-inset-bottom)); text-align: center; background: rgba(251,247,241,.96); border-top: 1px solid rgba(27,27,27,.08); box-shadow: 0 -8px 24px rgba(35,34,29,.07); backdrop-filter: blur(12px); }
     .footer-cta p { font: 14px/1.45 var(--sans); margin: 0 0 10px; }
@@ -313,7 +314,7 @@
     <aside class="approved reveal" data-reveal="card"><div class="approved-heading"><span class="approved-icon-wrap"><img src="assets/approved-check-white.svg" alt="" /></span>Expert approved treatment</div><p>Every Hair + Me treatment plan is checked by a prescriber before anything is sent.</p></aside>
 
     <section class="seal-section" aria-label="Hair + Me accredited care">
-      <div class="seal-wrap" id="seal"><img class="seal" src="assets/brand-seal.png" alt="Hair + Me care seal" /></div>
+      <div class="seal-wrap" id="seal"><img class="seal" src="assets/brand-seal.png" alt="Hair + Me care seal" /><img class="seal seal-back" src="assets/brand-seal.png" alt="" aria-hidden="true" /></div>
     </section>
   </main>
   <footer class="footer-cta reveal" data-reveal="text" id="plan"><p>Ready to see your personalised treatment plan?</p><a class="primary" href="#shopping-bag">View my plan</a></footer>

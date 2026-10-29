@@ -107,6 +107,7 @@
 
     .results-section { padding: 36px 8px 38px; background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.84) 48%, rgba(255,255,255,.1)); }
     .results-section .section-title { padding: 0 8px; }
+    .results-intro { margin: 10px 8px 24px; color: var(--muted); font: 400 16px/24px var(--sans); }
     .results-grid { width: 361px; max-width: 100%; margin: 0 auto; display: flex; gap: 12px; overflow-x: auto; overflow-y: clip; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .results-grid::-webkit-scrollbar { display: none; }
     .result-card { flex: 0 0 188.5px; scroll-snap-align: start; padding: 8px; background: #fff; min-width: 0; }
@@ -115,6 +116,7 @@
     .photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .photo-label { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,.75); backdrop-filter: blur(8px); padding: 3px 4px; font-size: 9px; white-space: nowrap; }
     .result-card p { font: 12px/16px var(--sans); margin: 8px 0; min-height: 32px; }
+    .result-card p strong { font-weight: 700; }
     .patient { display: inline-flex; background: var(--cream); padding: 3px 6px; font-size: 11px; }
 
     .side-effects { padding-top: 36px; }
@@ -271,11 +273,12 @@
 
     <section class="content-section results-section" id="results">
       <h2 class="section-title reveal" data-reveal="text">Real <span class="accent">results</span>, real people</h2>
+      <p class="results-intro reveal" data-reveal="text">All our treatment plans are personalised to support your specific needs</p>
       <div class="results-grid stagger">
-        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient1-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient1-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Prevent, stop or reverse hair loss</p><span class="patient">36, Male</span></article>
-        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient2-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient2-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Thicker, denser, more voluminous hair</p><span class="patient">41, Male</span></article>
-        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient3-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient3-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Prevent, stop or reverse hair loss</p><span class="patient">34, Male</span></article>
-        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient4-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient4-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p>Thicker, denser, more voluminous hair</p><span class="patient">32, Female</span></article>
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient1-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient1-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p><strong>Goal:</strong> Prevent, stop or reverse hair loss</p><span class="patient">36, Male</span></article>
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient2-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient2-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p><strong>Goal:</strong> Thicker, denser, more voluminous hair</p><span class="patient">41, Male</span></article>
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient3-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient3-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p><strong>Goal:</strong> Prevent, stop or reverse hair loss</p><span class="patient">34, Male</span></article>
+        <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient4-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient4-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p><strong>Goal:</strong> Thicker, denser, more voluminous hair</p><span class="patient">32, Female</span></article>
       </div>
     </section>
 

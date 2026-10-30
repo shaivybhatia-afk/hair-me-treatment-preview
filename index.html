@@ -79,19 +79,12 @@
     .timeline-section { padding: 36px 16px 38px; }
     .timeline { position: relative; width: min(100%, 329.95px); min-height: 454px; margin: 34px auto 0; }
     .timeline-line { position: absolute; display: block; width: 171.657px; height: 399.191px; left: 63.95px; top: 55px; transform: none; clip-path: none; }
-    .timeline.is-visible .timeline-line { animation: timeline-path-reveal 1.9s cubic-bezier(.4,0,.2,1) both; }
-    @keyframes timeline-path-reveal { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0); } }
     .milestone { position: absolute; display: flex; gap: 11px; align-items: center; width: 162px; font-size: 12px; line-height: 1.28; }
     .milestone-art { width: 52px; height: 58px; position: relative; flex: 0 0 52px; }
     .milestone-art .bubble-shape { position: absolute; left: 0; top: 0; width: 52px; height: 58px; }
     .milestone-art .follicles { position: absolute; left: 2.14px; top: 0; width: 42.85px; height: 52px; object-fit: contain; object-position: center; }
     .timeline-marker { position: absolute; display: block; width: 10px; height: 10px; top: 70px; z-index: 2; }
     .timeline-marker img { width: 10px; height: 10px; display: block; }
-    @keyframes timeline-marker-in { from { opacity: 0; transform: scale(.35); } 72% { opacity: 1; transform: scale(1.16); } to { opacity: 1; transform: scale(1); } }
-    .timeline.is-visible .m4 .timeline-marker { animation: timeline-marker-in .42s .4s cubic-bezier(.2,.75,.2,1) both; }
-    .timeline.is-visible .m3 .timeline-marker { animation: timeline-marker-in .42s 1s cubic-bezier(.2,.75,.2,1) both; }
-    .timeline.is-visible .m2 .timeline-marker { animation: timeline-marker-in .42s 1.55s cubic-bezier(.2,.75,.2,1) both; }
-    .timeline.is-visible .m1 .timeline-marker { animation: timeline-marker-in .42s 2s cubic-bezier(.2,.75,.2,1) both; }
     .milestone.m1 .timeline-marker { left: 21px; top: 71px; }
     .milestone.m2 .timeline-marker { left: 21px; top: 71px; }
     .milestone.m3 .timeline-marker { left: 107px; top: 70px; }
@@ -203,10 +196,10 @@
     .hero h1.reveal.is-visible { transform: none; filter: none; }
     .hero-scene.reveal { opacity: 0; transform: translateX(16px); filter: blur(1px); transition: opacity .8s ease, transform .9s cubic-bezier(.2,.75,.2,1), filter .8s ease; transition-delay: .58s; }
     .hero-scene.reveal.is-visible { opacity: 1; transform: translateX(0); filter: blur(0); }
-    .milestone.m4 { transition-delay: .14s; }
-    .milestone.m3 { transition-delay: .36s; }
-    .milestone.m2 { transition-delay: .58s; }
-    .milestone.m1 { transition-delay: .8s; }
+    .milestone.m4 { transition-delay: 0s; }
+    .milestone.m3 { transition-delay: .18s; }
+    .milestone.m2 { transition-delay: .36s; }
+    .milestone.m1 { transition-delay: .54s; }
     .stagger > .reveal:nth-child(2) { transition-delay: .08s; }
     .stagger > .reveal:nth-child(3) { transition-delay: .16s; }
     .stagger > .reveal:nth-child(4) { transition-delay: .24s; }

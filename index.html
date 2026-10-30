@@ -36,7 +36,7 @@
     .progress { position: relative; z-index: 3; padding: 12px 16px 0; background: transparent; }
     .progress-copy { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; line-height: 24px; }
     .progress-track { margin-top: 6px; height: 2px; background: #BFBAB3; position: relative; }
-    .progress-value { display: block; height: 100%; width: 95%; background: var(--blue); transform-origin: left; animation: progress-in 1.2s cubic-bezier(.2,.65,.2,1) both; }
+    .progress-value { display: block; height: 100%; width: 95%; background: #000; transform-origin: left; animation: progress-in 1.2s cubic-bezier(.2,.65,.2,1) both; }
     @keyframes progress-in { from { transform: scaleX(.12); } to { transform: scaleX(1); } }
 
     .hero { min-height: 558px; position: relative; padding: 40px 16px 30px; }
@@ -103,16 +103,16 @@
     .results-section { padding: 36px 8px 38px; background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.84) 48%, rgba(255,255,255,.1)); }
     .results-section .section-title { padding: 0 8px; margin-bottom: 0; }
     .results-intro { margin: 2px 8px 24px; color: var(--muted); font: 400 16px/24px var(--sans); }
-    .results-grid { width: 361px; max-width: 100%; margin: 0 auto; display: flex; gap: 12px; overflow-x: auto; overflow-y: clip; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .results-grid { width: 361px; max-width: 100%; margin: 0 auto; display: flex; gap: 16px; overflow-x: auto; overflow-y: clip; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .results-grid::-webkit-scrollbar { display: none; }
-    .result-card { flex: 0 0 188.5px; scroll-snap-align: start; padding: 8px; background: #fff; min-width: 0; }
-    .photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-    .photo { height: 100px; overflow: hidden; position: relative; background: #eee; }
+    .result-card { flex: 0 0 308px; max-width: 100%; scroll-snap-align: start; padding: 12px; background: #fff; min-width: 0; }
+    .photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .photo { aspect-ratio: 1; overflow: hidden; position: relative; background: #eee; }
     .photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .photo-label { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,.75); backdrop-filter: blur(8px); padding: 3px 4px; font-size: 9px; white-space: nowrap; }
-    .result-card p { font: 12px/16px var(--sans); margin: 8px 0; min-height: 32px; }
+    .photo-label { position: absolute; top: 6px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,.75); backdrop-filter: blur(8px); padding: 4px 6px; font-size: 11px; white-space: nowrap; }
+    .result-card p { font: 14px/20px var(--sans); margin: 8px 0; }
     .result-card p strong { font-weight: 700; }
-    .patient { display: inline-flex; background: var(--cream); padding: 3px 6px; font-size: 11px; }
+    .patient { display: inline-flex; background: var(--cream); padding: 4px 8px; font-size: 13px; }
 
     .side-effects { padding-top: 36px; }
     .effects { display: grid; gap: 12px; padding: 12px; background: #fff; }

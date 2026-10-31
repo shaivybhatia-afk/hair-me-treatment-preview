@@ -77,8 +77,8 @@
     .learn { display: block; width: fit-content; margin: 14px auto 0; color: var(--ink); font-size: 14px; text-underline-offset: 3px; }
 
     .timeline-section { padding: 36px 16px 38px; }
-    .timeline { position: relative; width: min(100%, 329.95px); min-height: 454px; margin: 34px auto 0; clip-path: inset(100% -120px 0 -120px); }
-    .timeline.is-visible { clip-path: inset(0 -120px 0 -120px); transition: clip-path 1s cubic-bezier(.4,0,.2,1); }
+    .timeline { position: relative; width: min(100%, 329.95px); min-height: 454px; margin: 34px auto 0; opacity: 0; transform: translateY(14px); will-change: opacity, transform; }
+    .timeline.is-visible { opacity: 1; transform: translateY(0); transition: opacity 1.4s ease, transform 1.4s cubic-bezier(.22,.61,.36,1); }
     .timeline .milestone.reveal { opacity: 1; transform: none; filter: none; transition: none; }
     .timeline-line { position: absolute; display: block; width: 171.657px; height: 399.191px; left: 63.95px; top: 55px; transform: none; clip-path: none; }
     .milestone { position: absolute; display: flex; gap: 11px; align-items: center; width: 162px; font-size: 12px; line-height: 1.28; }
@@ -106,6 +106,7 @@
     .results-grid { width: 361px; max-width: 100%; margin: 0 auto; display: flex; gap: 16px; overflow-x: auto; overflow-y: clip; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .results-grid::-webkit-scrollbar { display: none; }
     .result-card { flex: 0 0 308px; max-width: 100%; scroll-snap-align: start; padding: 12px; background: #fff; min-width: 0; }
+    .results-grid .result-card.reveal { opacity: 1; transform: none; filter: none; transition: none; }
     .photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .photo { aspect-ratio: 1; overflow: hidden; position: relative; background: #eee; }
     .photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
@@ -212,7 +213,7 @@
       .hero-scene.reveal { opacity: 1; transform: none; filter: none; }
       .clinician-portraits img { opacity: 1; transform: none; transition: none; }
       .timeline-line.reveal { clip-path: none; }
-      .timeline, .timeline.is-visible { clip-path: none; transition: none; }
+      .timeline, .timeline.is-visible { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -266,7 +267,7 @@
     <section class="content-section results-section" id="results">
       <h2 class="section-title reveal" data-reveal="text">Real <span class="accent">results</span>, real people</h2>
       <p class="results-intro reveal" data-reveal="text">All our treatment plans are personalised to support your specific needs</p>
-      <div class="results-grid stagger">
+      <div class="results-grid reveal" data-reveal="card">
         <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient1-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient1-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p><strong>Goal:</strong> Grow thicker and fuller hair</p><span class="patient">36, Male</span></article>
         <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient2-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient2-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p><strong>Goal:</strong> Thicker, denser, more voluminous hair</p><span class="patient">41, Male</span></article>
         <article class="result-card reveal" data-reveal="card"><div class="photo-pair"><div class="photo"><img src="assets/patient3-before.png" alt="Patient before treatment" /><span class="photo-label">Before</span></div><div class="photo"><img src="assets/patient3-after.png" alt="Patient after four months" /><span class="photo-label">4 Months</span></div></div><p><strong>Goal:</strong> Prevent, stop or reverse hair loss</p><span class="patient">34, Male</span></article>
@@ -369,25 +370,19 @@
         }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
         observed.forEach((el) => { if (!el.classList.contains('timeline')) observer.observe(el); });
 
-        // The timeline wipes in from the bottom, so it waits until its lower edge
-        // is on screen. It is observed through its section because the timeline
-        // itself is clipped to zero height until revealed, which would otherwise
-        // stop it from ever registering as intersecting.
+        // The timeline fades up as one block, so it triggers as soon as a
+        // reasonable part of it is on screen rather than waiting for the
+        // whole thing, which made it arrive after the reader got there.
         const timelineEl = document.querySelector('.timeline');
-        const timelineSection = document.querySelector('.timeline-section');
-        if (timelineEl && timelineSection) {
+        if (timelineEl) {
           const timelineObserver = new IntersectionObserver((entries, io) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
-              const rect = timelineEl.getBoundingClientRect();
-              const bottomInView = rect.bottom <= window.innerHeight;
-              const tooTallToFit = rect.height > window.innerHeight * 0.9;
-              if (!bottomInView && !(tooTallToFit && entry.intersectionRatio >= 0.6)) return;
-              timelineEl.classList.add('is-visible');
+              entry.target.classList.add('is-visible');
               io.unobserve(entry.target);
             });
-          }, { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] });
-          timelineObserver.observe(timelineSection);
+          }, { threshold: 0.25 });
+          timelineObserver.observe(timelineEl);
         }
 
         if (clinicianNote && approved) {

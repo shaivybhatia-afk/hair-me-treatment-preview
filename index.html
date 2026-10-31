@@ -379,14 +379,32 @@
         // whole thing, which made it arrive after the reader got there.
         const timelineEl = document.querySelector('.timeline');
         if (timelineEl) {
+          const startTimeline = () => timelineEl.classList.add('is-visible');
+          // The sequence begins at Day 1, which sits at the bottom of the
+          // timeline, so it waits for that lower edge to actually be on screen.
+          // Firing on a sliver of the top means it has finished before the
+          // reader arrives.
+          const timelineReady = () => {
+            const rect = timelineEl.getBoundingClientRect();
+            if (rect.height > window.innerHeight) return rect.top <= window.innerHeight * 0.2;
+            return rect.bottom <= window.innerHeight && rect.top < window.innerHeight;
+          };
           const timelineObserver = new IntersectionObserver((entries, io) => {
             entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add('is-visible');
+              if (!entry.isIntersecting || !timelineReady()) return;
+              startTimeline();
               io.unobserve(entry.target);
+              window.removeEventListener('scroll', onScroll);
             });
-          }, { threshold: 0.25 });
+          }, { threshold: [0, 0.25, 0.5, 0.75, 0.9, 1] });
+          const onScroll = () => {
+            if (!timelineReady()) return;
+            startTimeline();
+            timelineObserver.unobserve(timelineEl);
+            window.removeEventListener('scroll', onScroll);
+          };
           timelineObserver.observe(timelineEl);
+          window.addEventListener('scroll', onScroll, { passive: true });
         }
 
         if (clinicianNote && approved) {

@@ -77,32 +77,25 @@
     .learn { display: block; width: fit-content; margin: 14px auto 0; color: var(--ink); font-size: 14px; text-underline-offset: 3px; }
 
     .timeline-section { padding: 36px 16px 38px; }
-    .timeline { position: relative; width: min(100%, 329.95px); min-height: 454px; margin: 34px auto 0; }
-    .timeline .milestone { opacity: 0; transform: translateY(18px); transition: opacity .42s cubic-bezier(.2,.7,.2,1), transform .42s cubic-bezier(.2,.7,.2,1); }
-    .timeline.is-visible .milestone { opacity: 1; transform: translateY(0); }
-    .timeline.is-visible .m4 { transition-delay: 0s; }
-    .timeline.is-visible .m3 { transition-delay: .42s; }
-    .timeline.is-visible .m2 { transition-delay: .84s; }
-    .timeline.is-visible .m1 { transition-delay: 1.26s; }
-    .timeline-line { position: absolute; display: block; width: 171.657px; height: 399.191px; left: 63.95px; top: 55px; transform: none; clip-path: none; }
-    .milestone { position: absolute; display: flex; gap: 11px; align-items: center; width: 162px; font-size: 12px; line-height: 1.28; }
-    .milestone-art { width: 52px; height: 58px; position: relative; flex: 0 0 52px; }
-    .milestone-art .bubble-shape { position: absolute; left: 0; top: 0; width: 52px; height: 58px; }
-    .milestone-art .follicles { position: absolute; left: 2.14px; top: 0; width: 42.85px; height: 52px; object-fit: contain; object-position: center; }
-    .timeline-marker { position: absolute; display: block; width: 10px; height: 10px; top: 70px; z-index: 2; }
-    .timeline-marker img { width: 10px; height: 10px; display: block; }
-    .milestone.m1 .timeline-marker { left: 21px; top: 71px; }
-    .milestone.m2 .timeline-marker { left: 21px; top: 71px; }
-    .milestone.m3 .timeline-marker { left: 107px; top: 70px; }
-    .milestone.m4 .timeline-marker { left: 21px; top: 70px; }
-    .milestone strong { display: block; font-size: 13px; margin-bottom: 4px; }
-    .milestone span { display: block; }
-    .milestone.m1 { top: 0; left: 156.95px; }
-    .milestone.m2 { top: 134px; left: 144px; }
-    .milestone.m3 { top: 253px; left: -8px; width: 137px; flex-direction: row-reverse; text-align: right; }
-    .milestone.m4 { top: 366px; left: 174.95px; }
-    .timeline-foot { display: flex; align-items: center; justify-content: center; gap: 8px; color: rgba(27,27,27,.8); font: 400 16px/24px var(--sans); text-align: center; margin: 32px 0 0; }
-    .timeline-foot::before { content: ""; display: block; flex: 0 0 20px; width: 20px; height: 20px; background: url("assets/results-surity-icon.svg") center / 20px 20px no-repeat; }
+    .timeline { position: relative; width: min(100%, 330px); margin: 28px auto 0; }
+    .tl-step { position: relative; display: grid; grid-template-columns: 52px 1fr; column-gap: 20px; align-items: start; padding-bottom: 52px; }
+    .tl-step:last-child { padding-bottom: 0; }
+    .tl-step::before { content: ""; position: absolute; left: 25px; top: 54px; bottom: -2px; border-left: 1.5px dashed #a0a7b1; opacity: .5; }
+    .tl-step:last-child::before { display: none; }
+    .tl-icon { width: 52px; height: 52px; border-radius: 50%; background: #fff; border: 1.4px solid #dbe1e9; display: grid; place-items: center; position: relative; z-index: 2; }
+    .tl-icon img { width: 43px; height: 52px; object-fit: contain; display: block; }
+    .tl-text { padding-top: 4px; }
+    .tl-text h3 { font: 600 16px/1.28 var(--sans); margin: 0; color: #000; }
+    .tl-text p { font: 400 14px/1.28 var(--sans); margin: 5px 0 0; color: #494949; }
+    .tl-step.is-final .tl-text h3, .tl-step.is-final .tl-text p { color: var(--blue); }
+    .timeline .tl-step { opacity: 0; transform: translateY(18px); transition: opacity .42s cubic-bezier(.2,.7,.2,1), transform .42s cubic-bezier(.2,.7,.2,1); }
+    .timeline.is-visible .tl-step { opacity: 1; transform: translateY(0); }
+    .timeline.is-visible .tl-step:nth-child(1) { transition-delay: 0s; }
+    .timeline.is-visible .tl-step:nth-child(2) { transition-delay: .42s; }
+    .timeline.is-visible .tl-step:nth-child(3) { transition-delay: .84s; }
+    .timeline.is-visible .tl-step:nth-child(4) { transition-delay: 1.26s; }
+    .timeline-foot { display: flex; align-items: center; justify-content: center; gap: 6px; color: #343434; font: 400 14px/24px var(--sans); text-align: center; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #dbe1e9; max-width: 337px; }
+    .timeline-foot::before { content: ""; display: block; flex: 0 0 20px; width: 20px; height: 20px; opacity: .55; background: url("assets/results-surity-icon.svg") center / 20px 20px no-repeat; }
 
     .results-section { padding: 36px 8px 38px; background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.84) 48%, rgba(255,255,255,.1)); }
     .results-section .section-title { padding: 0 8px; margin-bottom: 0; }
@@ -217,7 +210,7 @@
       .hero-scene.reveal { opacity: 1; transform: none; filter: none; }
       .clinician-portraits img { opacity: 1; transform: none; transition: none; }
       .timeline-line.reveal { clip-path: none; }
-      .timeline .milestone { opacity: 1; transform: none; transition: none; }
+      .timeline .tl-step { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -257,15 +250,14 @@
     </section>
 
     <section class="content-section timeline-section">
-      <h2 class="section-title reveal" data-reveal="text">Visible <span class="accent">results</span> in 3–6 months</h2>
+      <h2 class="section-title reveal" data-reveal="text">Visible <span class="accent">results</span> in 3-6 months</h2>
       <div class="timeline">
-        <img class="timeline-line" src="assets/timeline-path-figma.svg" alt="" />
-        <div class="milestone m1"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-month5plus.png" alt="" /></span><div><strong>Month 5+</strong><span>More growth and density</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
-        <div class="milestone m2"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-month3-5.png" alt="" /></span><div><strong>Month 3–5</strong><span>New hairs appear</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
-        <div class="milestone m3"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union1.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-month1-3.png" alt="" /></span><div><strong>Month 1–3</strong><span>Follicles enter growth phase</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
-        <div class="milestone m4"><span class="milestone-art"><img class="bubble-shape" src="assets/timeline-union2.svg" alt="" /><img class="follicles" src="assets/timeline-ellipse-day1.png" alt="" /></span><div><strong>Day 1</strong><span>You start your plan</span></div><span class="timeline-marker" aria-hidden="true"><img src="assets/timeline-marker.svg" alt="" /></span></div>
+        <div class="tl-step"><span class="tl-icon"><img src="assets/tl-day1.png" alt="" /></span><div class="tl-text"><h3>Day 1</h3><p>You start your plan</p></div></div>
+        <div class="tl-step"><span class="tl-icon"><img src="assets/tl-month1-3.png" alt="" /></span><div class="tl-text"><h3>Month 1-3</h3><p>Follicles enter growth phase</p></div></div>
+        <div class="tl-step"><span class="tl-icon"><img src="assets/tl-month3-5.png" alt="" /></span><div class="tl-text"><h3>Month 3-5</h3><p>New hairs appear</p></div></div>
+        <div class="tl-step is-final"><span class="tl-icon"><img src="assets/tl-month5-plus.png" alt="" /></span><div class="tl-text"><h3>Month 5+</h3><p>More growth and density</p></div></div>
       </div>
-      <p class="timeline-foot reveal" data-reveal="text">Results continue with ongoing use</p>
+      <p class="timeline-foot reveal" data-reveal="text">Results continue with ongoing use.</p>
     </section>
 
     <section class="content-section results-section" id="results">
@@ -374,36 +366,32 @@
         }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
         observed.forEach((el) => { if (!el.classList.contains('timeline')) observer.observe(el); });
 
-        // The timeline fades up as one block, so it triggers as soon as a
-        // reasonable part of it is on screen rather than waiting for the
-        // whole thing, which made it arrive after the reader got there.
+        // The steps appear one at a time from Day 1 down, so the sequence
+        // holds until enough of the list is on screen for the reader to be
+        // looking at it rather than arriving after it has finished.
         const timelineEl = document.querySelector('.timeline');
         if (timelineEl) {
-          const startTimeline = () => timelineEl.classList.add('is-visible');
-          // The sequence begins at Day 1, which sits at the bottom of the
-          // timeline, so it waits for that lower edge to actually be on screen.
-          // Firing on a sliver of the top means it has finished before the
-          // reader arrives.
-          const timelineReady = () => {
-            const rect = timelineEl.getBoundingClientRect();
-            if (rect.height > window.innerHeight) return rect.top <= window.innerHeight * 0.2;
-            return rect.bottom <= window.innerHeight && rect.top < window.innerHeight;
+          const start = () => timelineEl.classList.add('is-visible');
+          const ready = () => {
+            const r = timelineEl.getBoundingClientRect();
+            if (r.height > window.innerHeight) return r.top <= window.innerHeight * 0.25;
+            return r.top < window.innerHeight * 0.72 && r.bottom > 0;
           };
-          const timelineObserver = new IntersectionObserver((entries, io) => {
+          const io = new IntersectionObserver((entries, obs) => {
             entries.forEach((entry) => {
-              if (!entry.isIntersecting || !timelineReady()) return;
-              startTimeline();
-              io.unobserve(entry.target);
+              if (!entry.isIntersecting || !ready()) return;
+              start();
+              obs.unobserve(entry.target);
               window.removeEventListener('scroll', onScroll);
             });
-          }, { threshold: [0, 0.25, 0.5, 0.75, 0.9, 1] });
+          }, { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] });
           const onScroll = () => {
-            if (!timelineReady()) return;
-            startTimeline();
-            timelineObserver.unobserve(timelineEl);
+            if (!ready()) return;
+            start();
+            io.unobserve(timelineEl);
             window.removeEventListener('scroll', onScroll);
           };
-          timelineObserver.observe(timelineEl);
+          io.observe(timelineEl);
           window.addEventListener('scroll', onScroll, { passive: true });
         }
 
